@@ -33,7 +33,7 @@
     <ProjectGuid>{2c5634da-2d89-48f7-813d-292f290cc7a3}</ProjectGuid>
     <GenerateDatabaseFile>False</GenerateDatabaseFile>
     <GenerateCreateScript>False</GenerateCreateScript>
-    <SqlServerVerification>False</SqlServerVerification>
+    <SqlServerVerification>True</SqlServerVerification>
     <TargetLanguage>CS</TargetLanguage>
     <AllowSnapshotIsolation>False</AllowSnapshotIsolation>
     <AnsiNullDefault>True</AnsiNullDefault>
