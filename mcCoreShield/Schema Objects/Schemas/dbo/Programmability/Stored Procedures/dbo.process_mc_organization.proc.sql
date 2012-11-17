@@ -1,11 +1,11 @@
-﻿CREATE PROCEDURE dbo.process_mc_organization ( @systemID     AS INT
+﻿CREATE PROCEDURE dbo.process_mc_organization ( @systemDBName AS NVARCHAR (50)
                                              , @recordsIN    AS INT
-                                             , @operation    AS NVARCHAR(20)
-                                             , @errorMessage AS NVARCHAR(MAX) OUTPUT )
+                                             , @operation    AS NVARCHAR (20)
+                                             , @errorMessage AS NVARCHAR (MAX) OUTPUT )
 AS
 /*
 ************************************************************************************************************************************
-  
+
   Procedure: dbo.process_mc_organization
      Author: Chris Carson
     Purpose: Processes data from portal view trigger for dbo.Organizations and dbo.OrganizationSystems tables on coreSHIELD
@@ -32,6 +32,7 @@ AS
             9) update OrganizationIDs on incoming data
            10) DELETE data from dbo.OrganizationSystems
            11) DELETE dbo.Organizations if no dbo.OrganizationSystems records remain
+
 ************************************************************************************************************************************
 */
 BEGIN
@@ -44,11 +45,16 @@ BEGIN
           , @organizationUpdates AS INT = 0
           , @legacyID            AS INT = 0
           , @inserted            AS INT = 0
-          , @deleted             AS INT = 0 ;
+          , @deleted             AS INT = 0 
+          , @systemID            AS INT = 0 ;
 
     DECLARE @mergeResults AS TABLE ( action         NVARCHAR(50)
                                    , organizationID UNIQUEIDENTIFIER ) ;
 
+    SELECT  @systemID = id
+      FROM  dbo.Systems
+     WHERE  systemDBName = @systemDBName
+                                   
     IF  ( @operation = 'INSERT' )
     BEGIN
 
@@ -72,18 +78,18 @@ BEGIN
 
 
     --  2)  Assign existing Organization.id to incoming records with same name
-;         WITH  matchingNames AS ( 
-                SELECT  N    = ROW_NUMBER() OVER ( PARTITION BY Name ORDER BY systemID, mc_organizationID ) 
+;         WITH  matchingNames AS (
+                SELECT  N    = ROW_NUMBER() OVER ( PARTITION BY Name ORDER BY systemID, mc_organizationID )
                       , id   = o.id
-                      , name = o.name 
-                  FROM  dbo.Organizations AS o 
-            INNER JOIN  dbo.OrganizationSystems AS os 
-                    ON  os.id = o.id ) 
-    
+                      , name = o.name
+                  FROM  dbo.Organizations AS o
+            INNER JOIN  dbo.OrganizationSystems AS os
+                    ON  os.id = o.id )
+
         UPDATE  #mc_organization
            SET  OrganizationID = a.id
           FROM  matchingNames     AS a
-    INNER JOIN  #mc_organization  AS b 
+    INNER JOIN  #mc_organization  AS b
             ON  a.Name = b.Name AND a.N = 1 ;
 
 
@@ -154,7 +160,7 @@ BEGIN
             RETURN 3 ;
         END
 
-        
+
     --  5)  update userIDs on dbo.Organizations ONLY for Organizations that were INSERTed
         UPDATE  dbo.Organizations
            SET  createdBy = x.ContactsID
@@ -246,13 +252,13 @@ BEGIN
 
     IF  ( @operation = 'DELETE' )
     BEGIN
-    
+
     --  9)  update OrganizationIDs on incoming data
         UPDATE  #mc_organization
            SET  organizationID = x.OrganizationsID
           FROM  #mc_organization AS mo
    CROSS APPLY  dbo.tvf_getCoreOrganizationsID( mo.id, @systemID ) AS x ;
-      
+
 
     --  10) DELETE data from dbo.OrganizationSystems
         DELETE  dbo.OrganizationSystems
@@ -273,11 +279,11 @@ BEGIN
     --  10) DELETE dbo.Organizations if no dbo.OrganizationSystems records remain
         DELETE  dbo.Organizations
           FROM  dbo.Organizations AS o
-         WHERE  EXISTS ( SELECT 1 FROM #mc_organization AS mo 
-                          WHERE mo.OrganizationID = o.id ) 
+         WHERE  EXISTS ( SELECT 1 FROM #mc_organization AS mo
+                          WHERE mo.OrganizationID = o.id )
                     AND NOT
                 EXISTS ( SELECT 1 FROM dbo.OrganizationSystems AS OS
-                          WHERE os.id = o.id ) ; 
+                          WHERE os.id = o.id ) ;
 
     END
 END

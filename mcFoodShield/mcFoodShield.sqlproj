@@ -6419,10 +6419,6 @@
     <Build Include="Schema Objects\Schemas\dbo\Views\Triggers\dbo.mc_contact.process_mc_contact.trigger.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Views\Triggers\dbo.mc_organization.mc_organization_trigger.trigger.sql">
-      <SubType>Code</SubType>
-      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
-    </Build>
     <Build Include="Schema Objects\Schemas\dbo\Views\Triggers\dbo.mc_contact_addresses.process_mc_contact_addresses.trigger.sql">
       <SubType>Code</SubType>
     </Build>
@@ -7833,6 +7829,13 @@
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Database Level Objects\Security\Schemas\Portal.schema.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Views\Triggers\dbo.mc_organization.trigger.sql">
+      <SubType>Code</SubType>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.process_mc_organization.synonym.sql">
       <SubType>Code</SubType>
     </Build>
   </ItemGroup>
