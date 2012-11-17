@@ -58,7 +58,7 @@ BEGIN
     ALTER TABLE #mc_organization ADD
         organizationID UNIQUEIDENTIFIER DEFAULT NEWSEQUENTIALID() WITH VALUES ;
 
-    EXECUTE @rc = mcCoreSHIELD.dbo.process_mc_organization @systemID
+    EXECUTE @rc = dbo.process_mc_organization @systemID
                                                          , @recordsIN
                                                          , @operation
                                                          , @errorMessage OUTPUT ;

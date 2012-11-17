@@ -28,7 +28,7 @@ AS
                   , typename     = EmailTypeName
                   , active       = isActive
                   , display_Order = displayOrder
-              FROM  mcCoreShield.Reference.EmailTypes
+              FROM  Reference.EmailTypes
              WHERE  portalName = DB_NAME() AND isExcluded = 1 ) ,
 
             allPortals AS (
@@ -36,9 +36,9 @@ AS
                   , typename     = EmailTypeName
                   , active       = isActive
                   , display_Order = displayOrder
-              FROM  mcCoreShield.Reference.EmailTypes
+              FROM  Reference.EmailTypes
              WHERE  portalName = 'All'
-               AND  NOT EXISTS ( SELECT 1 FROM mcCoreShield.Reference.EmailTypes
+               AND  NOT EXISTS ( SELECT 1 FROM Reference.EmailTypes
                                   WHERE EmailTypeID = 0 AND portalName = DB_NAME() )
                 EXCEPT
             SELECT  * FROM exclusions ) ,
@@ -48,7 +48,7 @@ AS
                   , typename     = EmailTypeName
                   , active       = isActive
                   , display_Order = displayOrder
-              FROM  mcCoreShield.Reference.EmailTypes
+              FROM  Reference.EmailTypes
              WHERE  portalName = DB_NAME()
                AND  EmailTypeID > 0
                AND  isExcluded = 0 )

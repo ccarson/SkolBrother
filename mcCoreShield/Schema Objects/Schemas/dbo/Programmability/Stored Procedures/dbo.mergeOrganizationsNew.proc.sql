@@ -106,7 +106,7 @@ BEGIN
                 AND os.systemID = @systemID ; 
         
 --  7)  Merge coreShield tables
-        EXECUTE mcCoreShield.dbo.mergeCoreOrganizationsNew @systemID
+        EXECUTE dbo.mergeCoreOrganizationsNew @systemID
                                                          , @systemName
                                                          , @MasterOrganizationID ; 
                                                                 
@@ -128,7 +128,7 @@ BEGIN
            AND  name not like '%## MERGED ## ' ;
            
 --  12) Merge data on non-core shield tables                      
-        EXECUTE @rc = mcCoreShield.dbo.mergePortalOrganizationsNew @systemName
+        EXECUTE @rc = dbo.mergePortalOrganizationsNew @systemName
                                                                  , @MasterPortalID ;
         IF  @rc <> 0 
             RETURN @rc ;

@@ -157,7 +157,7 @@ INNER JOIN  inputData AS i ON i.id = o.id
                                                     FOR XML PATH ('')),1,1,'') ;
 
 --  7)  Merge coreShield tables
-        EXECUTE mcCoreShield.dbo.mergeCoreOrganizations @systemName
+        EXECUTE dbo.mergeCoreOrganizations @systemName
                                                       , @MasterOrganizationID
                                                       , @mergingCoreShieldIDs ; 
                                                                 
@@ -198,7 +198,7 @@ INNER JOIN  inputData AS i ON i.id = o.id
                                                 FOR XML PATH ('')),1,1,'') ;
                  
 --  12) Merge data on non-core shield tables                      
-        EXECUTE mcCoreShield.dbo.mergePortalOrganizations @systemName
+        EXECUTE dbo.mergePortalOrganizations @systemName
                                                         , @MasterPortalID
                                                         , @mergingPortalIDs ;     
                                                         

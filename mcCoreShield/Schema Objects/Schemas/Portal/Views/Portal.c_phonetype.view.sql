@@ -28,7 +28,7 @@ AS
                   , typename      = PhoneTypeName
                   , active        = isActive
                   , display_Order = displayOrder
-              FROM  mcCoreShield.Reference.PhoneTypes
+              FROM  Reference.PhoneTypes
              WHERE  portalName = DB_NAME() AND isExcluded = 1 ) ,
 
             allPortals AS (
@@ -36,9 +36,9 @@ AS
                   , typename      = PhoneTypeName
                   , active        = isActive
                   , display_Order = displayOrder
-              FROM  mcCoreShield.Reference.PhoneTypes
+              FROM  Reference.PhoneTypes
              WHERE  portalName = 'All'
-               AND  NOT EXISTS ( SELECT 1 FROM mcCoreShield.Reference.PhoneTypes
+               AND  NOT EXISTS ( SELECT 1 FROM Reference.PhoneTypes
                                   WHERE PhoneTypeID = 0 AND portalName = DB_NAME() )
                 EXCEPT
             SELECT  * FROM exclusions ) ,
@@ -48,7 +48,7 @@ AS
                   , typename      = PhoneTypeName
                   , active        = isActive
                   , display_Order = displayOrder
-              FROM  mcCoreShield.Reference.PhoneTypes
+              FROM  Reference.PhoneTypes
              WHERE  portalName = DB_NAME()
                AND  PhoneTypeID > 0
                AND  isExcluded = 0 )

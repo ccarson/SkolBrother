@@ -27,7 +27,7 @@ AS
                   , verticalname = VerticalName
                   , active       = isActive
                   , noedit       = noEdit
-              FROM  mcCoreShield.Reference.Verticals
+              FROM  Reference.Verticals
              WHERE  portalName = DB_NAME() AND isExcluded = 1 ) ,
 
             allPortals AS (
@@ -35,9 +35,9 @@ AS
                   , verticalname = VerticalName
                   , active       = isActive
                   , noedit       = noEdit
-              FROM  mcCoreShield.Reference.Verticals
+              FROM  Reference.Verticals
              WHERE  portalName = 'All'
-               AND  NOT EXISTS ( SELECT 1 FROM mcCoreShield.Reference.Verticals
+               AND  NOT EXISTS ( SELECT 1 FROM Reference.Verticals
                                   WHERE VerticalID = 0 AND portalName = DB_NAME() )
                 EXCEPT
             SELECT  * FROM exclusions ) ,
@@ -47,7 +47,7 @@ AS
                   , verticalname = VerticalName
                   , active       = isActive
                   , noedit       = noEdit
-              FROM  mcCoreShield.Reference.Verticals
+              FROM  Reference.Verticals
              WHERE  portalName = DB_NAME()
                AND  VerticalID > 0
                AND  isExcluded = 0 )

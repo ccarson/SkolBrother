@@ -1,2 +1,2 @@
-﻿CREATE SYNONYM [Portal].[tvf_getCoreContactsID] FOR [mcCoreShield].[dbo].[tvf_getCoreContactsID];
+﻿CREATE SYNONYM [Portal].[tvf_getCoreContactsID] FOR [dbo].[tvf_getCoreContactsID];
 

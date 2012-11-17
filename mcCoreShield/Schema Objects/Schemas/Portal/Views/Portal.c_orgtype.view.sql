@@ -27,16 +27,16 @@ AS
             SELECT  id       = OrganizationTypeID
                   , typename = OrganizationTypeName
                   , active   = isActive
-              FROM  mcCoreShield.Reference.OrganizationTypes
+              FROM  Reference.OrganizationTypes
              WHERE  portalName = DB_NAME() AND isExcluded = 1 ) ,
 
             allPortals AS (
             SELECT  id       = OrganizationTypeID
                   , typename = OrganizationTypeName
                   , active   = isActive
-              FROM  mcCoreShield.Reference.OrganizationTypes
+              FROM  Reference.OrganizationTypes
              WHERE  portalName = 'All'
-               AND  NOT EXISTS ( SELECT 1 FROM mcCoreShield.Reference.OrganizationTypes
+               AND  NOT EXISTS ( SELECT 1 FROM Reference.OrganizationTypes
                                   WHERE OrganizationTypeID = 0 AND portalName = DB_NAME() )
                 EXCEPT
             SELECT  * FROM exclusions ) ,
@@ -45,7 +45,7 @@ AS
             SELECT  id       = OrganizationTypeID
                   , typename = OrganizationTypeName
                   , active   = isActive
-              FROM  mcCoreShield.Reference.OrganizationTypes
+              FROM  Reference.OrganizationTypes
              WHERE  portalName = DB_NAME()
                AND  OrganizationTypeID > 0
                AND  isExcluded = 0 )

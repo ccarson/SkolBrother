@@ -1,2 +1,2 @@
-﻿CREATE SYNONYM [Portal].[Organizations] FOR [mcCoreShield].[dbo].[Organizations];
+﻿CREATE SYNONYM [Portal].[Organizations] FOR [dbo].[Organizations];
 

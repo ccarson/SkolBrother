@@ -1,2 +1,2 @@
-﻿CREATE SYNONYM [Portal].[vw_transitionOrganizations] FOR [mcCoreShield].[dbo].[vw_transitionOrganizations];
+﻿CREATE SYNONYM [Portal].[vw_transitionOrganizations] FOR [dbo].[vw_transitionOrganizations];
 

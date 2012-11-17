@@ -36,7 +36,7 @@ BEGIN
     DECLARE @systemID          AS INT ;
 
     SELECT  @tableID = id
-      FROM  mcCoreShield.dbo.coreConvertedTables
+      FROM  dbo.coreConvertedTables
      WHERE  tableName = 'mc_contact_orgroles' ;
 
     SELECT  @systemID = id
@@ -76,7 +76,7 @@ BEGIN
         SET @recordsIN = @recordsDeleted ;
     END
 
-    EXEC @rc = mcCoreShield.dbo.process_mc_contact_orgroles @systemID
+    EXEC @rc = dbo.process_mc_contact_orgroles @systemID
                                                           , @tableID
                                                           , @recordsIN
                                                           , @dataXML

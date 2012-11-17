@@ -17,5 +17,5 @@ ccarson     2012-08-24    Created
 AS
     SELECT  TOP 100 PERCENT
             *
-      FROM  mcCoreShield.Reference.ZipCodes
+      FROM  Reference.ZipCodes
      ORDER  BY 1 ;
