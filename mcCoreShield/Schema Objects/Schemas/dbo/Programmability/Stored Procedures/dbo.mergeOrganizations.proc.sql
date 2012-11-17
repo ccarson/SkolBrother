@@ -73,7 +73,7 @@ BEGIN
 --  1)  Extract dbo.OrganizationSystems based on @mergingOrganizationIDs into temp storage
       WITH  inputData AS ( 
             SELECT id = CAST( Item AS UNIQUEIDENTIFIER ) 
-              FROM master.dbo.tvf_SplitString( @mergingOrganizationIDs, ',' ) )
+              FROM dbo.tvf_SplitString( @mergingOrganizationIDs, ',' ) )
     SELECT  id                  = o.id
           , systemID            = COALESCE( systemID, 1 )
           , organizationTypeID  = COALESCE( organizationTypeID, 1 )

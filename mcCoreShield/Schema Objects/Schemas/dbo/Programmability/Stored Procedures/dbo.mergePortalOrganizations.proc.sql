@@ -38,7 +38,7 @@ BEGIN
 --  1)  Parse out incoming portal.org_id values into temp storage  
     SELECT  org_id = CAST( Item AS INT ) 
       INTO  #mergingPortalIDs 
-      FROM  master.dbo.tvf_SplitString ( @mergingPortalIDs, ',' ) ; 
+      FROM  dbo.tvf_SplitString ( @mergingPortalIDs, ',' ) ; 
       
     SELECT  @sql = N'
 USE [' + @systemName + '] ;

@@ -32,7 +32,7 @@ BEGIN
 --  1)  Parse out incoming organizationIDs into temp storage
     SELECT  organizationsID = CAST( Item AS UNIQUEIDENTIFIER ) 
       INTO  #mergingOrganizationIDs 
-      FROM  master.dbo.tvf_SplitString ( @mergingOrganizationIDs, ',' ) ; 
+      FROM  dbo.tvf_SplitString ( @mergingOrganizationIDs, ',' ) ; 
       
       
 --  2)  UPDATE dbo.OrgDepartments, setting organizationsID on merging records to @MasterOrganizationsID

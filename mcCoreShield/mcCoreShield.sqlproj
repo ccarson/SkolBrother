@@ -91,6 +91,8 @@
     </TargetDatabase>
     <TreatTSqlWarningsAsErrors>False</TreatTSqlWarningsAsErrors>
     <SuppressTSqlWarnings />
+    <RunSqlCodeAnalysis>False</RunSqlCodeAnalysis>
+    <SqlCodeAnalysisRules>-Microsoft.Rules.Data.SR0001;-Microsoft.Rules.Data.SR0014;-Microsoft.Rules.Data.SR0008;-Microsoft.Rules.Data.SR0010;-Microsoft.Rules.Data.SR0013;-Microsoft.Rules.Data.SR0009;-Microsoft.Rules.Data.SR0012;-Microsoft.Rules.Data.SR0011;-Microsoft.Rules.Data.SR0016;-Microsoft.Rules.Data.SR0015;-Microsoft.Rules.Data.SR0005;-Microsoft.Rules.Data.SR0006;-Microsoft.Rules.Data.SR0004;-Microsoft.Rules.Data.SR0007</SqlCodeAnalysisRules>
   </PropertyGroup>
   <!--Import the settings-->
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
@@ -402,7 +404,7 @@
       <SubType>Code</SubType>
       <QuotedIdentifier>Off</QuotedIdentifier>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Programmability\Functions\dbo.udfListFromDelimitedString.function.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Functions\dbo.tvf_SplitString.function.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\Reference\Programmability\Functions\Reference.tvf_EmailTypes.function.sql">
@@ -561,6 +563,7 @@
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.process_mc_organization.proc.sql">
       <SubType>Code</SubType>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.mergeCoreOrganizations.proc.sql">
       <SubType>Code</SubType>
@@ -582,12 +585,14 @@
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.mergePortalOrganizationsNEW.proc.sql">
       <SubType>Code</SubType>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.coreShieldConversion.proc.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.mergeCoreOrganizationsNew.proc.sql">
       <SubType>Code</SubType>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.convertOrgLocations.proc.sql">
       <SubType>Code</SubType>
@@ -730,6 +735,7 @@
     </Build>
     <Build Include="Schema Objects\Schemas\Portal\Views\Triggers\Portal.mc_organization.mc_organization_trigger.trigger.sql">
       <SubType>Code</SubType>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
     </Build>
     <Build Include="Schema Objects\Database Level Objects\Database Triggers\captureDDLChanges.ddltrigger.sql">
       <SubType>Code</SubType>
