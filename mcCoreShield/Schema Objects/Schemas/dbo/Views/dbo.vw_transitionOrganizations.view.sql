@@ -22,4 +22,3 @@ AS
           , transitionSystemsID = systemID
           , OrganizationsID     = mc_organizationID
       FROM  dbo.OrganizationSystems ;
-
