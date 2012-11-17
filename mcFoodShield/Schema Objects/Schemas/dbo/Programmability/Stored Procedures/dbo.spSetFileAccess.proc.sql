@@ -1,5 +1,4 @@
-﻿
-CREATE PROCEDURE [dbo].[spSetFileAccess] ( 
+﻿CREATE PROCEDURE [dbo].[spSetFileAccess] ( 
 	  @access AS nvarchar(50) 
 	, @folderID AS NVARCHAR(100) = N''
 	, @fileID AS NVARCHAR(100) = N''
@@ -63,19 +62,19 @@ BEGIN
 		   FROM  dbo.mc_groups AS g
 		  WHERE  g.Group_ID IN ( 
 				 SELECT  Item 
-				   FROM  mcCoreShield.dbo.udfListFromDelimitedString( @groupID, N',' ) ) ;
+				   FROM  dbo.tvf_SplitString( @groupID, N',' ) ) ;
 
 	IF  @@ROWCOUNT = 0 
 		RAISERROR ( 'No valid groups were specified', 16, 101 ) ;
 						   
 	INSERT INTO  @files ( fileID )
 		 SELECT  f.ID
-		   FROM  mcCoreShield.dbo.udfListFromDelimitedString( @folderID, N',' ) AS l
+		   FROM  dbo.tvf_SplitString( @folderID, N',' ) AS l
 	 INNER JOIN  dbo.vfc_file AS f ON f.ParentFolderID = l.item
 	      WHERE  @fileID = ''
 	  UNION ALL
 		 SELECT  l.Item
-		   FROM  mcCoreShield.dbo.udfListFromDelimitedString( @fileID, N',' ) AS l
+		   FROM  dbo.tvf_SplitString( @fileID, N',' ) AS l
 	      WHERE  @fileID > N'' ;
 
 	INSERT INTO  @users ( 
@@ -90,7 +89,7 @@ BEGIN
 	 INNER JOIN  @groups AS g ON g.groupID = gm.GroupID
 	      WHERE  gm.ForeignKeyID IN ( 
 				 SELECT  Item
-				   FROM  mcCoreShield.dbo.udfListFromDelimitedString( @userID, N',' ) ) ;
+				   FROM  dbo.tvf_SplitString( @userID, N',' ) ) ;
 	  
 	IF  @access = 'GRANT'
 		INSERT INTO  dbo.vfc_fileace (

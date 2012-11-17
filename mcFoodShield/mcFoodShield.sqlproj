@@ -5300,9 +5300,6 @@
     <Build Include="Schema Objects\Schemas\dbo\Tables\Indexes\dbo.MethodUserAccess.IX_MethodUserAccess.index.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Programmability\Functions\dbo.udfListFromDelimitedString.function.sql">
-      <SubType>Code</SubType>
-    </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\dbo.conf_aphis.PK_conf_aphis_id.pkey.sql">
       <SubType>Code</SubType>
     </Build>
@@ -6346,6 +6343,7 @@
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.spGroupMemberFileace.proc.sql">
       <SubType>Code</SubType>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.spMergeOrganizations.proc.sql">
       <SubType>Code</SubType>
@@ -6401,6 +6399,7 @@
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Views\Triggers\dbo.mc_organization.mc_organization_trigger.trigger.sql">
       <SubType>Code</SubType>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Views\Triggers\dbo.mc_contact_addresses.process_mc_contact_addresses.trigger.sql">
       <SubType>Code</SubType>
@@ -7805,6 +7804,9 @@
     <Build Include="Schema Objects\Schemas\dbo\Synonyms\dbo.Organizations.synonym.sql">
       <SubType>Code</SubType>
     </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Functions\dbo.tvf_SplitString.function.sql">
+      <SubType>Code</SubType>
+    </Build>
   </ItemGroup>
   <ItemGroup>
     <None Include="Debug.publish.xml" />
@@ -7815,5 +7817,21 @@
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Post-Deployment\Script.PostDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\100\SqlSchemas\master.dacpac">
+      <HintPath>$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\100\SqlSchemas\master.dacpac</HintPath>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+      <DatabaseVariableLiteralValue>master</DatabaseVariableLiteralValue>
+    </ArtifactReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\mcCoreShield\mcCoreShield.sqlproj">
+      <Name>mcCoreShield</Name>
+      <Project>{f03ecab4-9288-46df-999a-169ceb8a328c}</Project>
+      <Private>True</Private>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+      <DatabaseVariableLiteralValue>mcCoreShield</DatabaseVariableLiteralValue>
+    </ProjectReference>
   </ItemGroup>
 </Project>

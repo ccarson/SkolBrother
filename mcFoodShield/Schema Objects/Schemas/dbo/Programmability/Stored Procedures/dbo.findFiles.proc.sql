@@ -37,7 +37,7 @@ BEGIN
 --	parse @searchTerms and load results into @keywordsTable
 	INSERT INTO  @keywordsTable
 		 SELECT  Item
-	       FROM  dbo.udfListFromDelimitedString( @searchTerms, @delimiter ) ;
+	       FROM  dbo.tvf_SplitString( @searchTerms, @delimiter ) ;
 
 --	update searchTerms, prepending and appending % so we can use LIKE operator	       
 	UPDATE  @keywordsTable
