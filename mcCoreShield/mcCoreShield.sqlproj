@@ -606,9 +606,6 @@
     <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.mc_contact_notes.proc.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\Conversion\Programmability\Stored Procedures\Conversion.deployPortalObject.proc.sql">
-      <SubType>Code</SubType>
-    </Build>
     <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.mc_contact_emails.proc.sql">
       <SubType>Code</SubType>
     </Build>
@@ -670,13 +667,6 @@
       <SubType>Code</SubType>
       <QuotedIdentifier>Off</QuotedIdentifier>
     </Build>
-    <Build Include="Schema Objects\Schemas\Portal\Views\Triggers\Portal.mc_contact_orgroles.mc_contact_orgroles_trigger.trigger.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\Portal\Views\Triggers\Portal.mc_organization.mc_organization_trigger.trigger.sql">
-      <SubType>Code</SubType>
-      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
-    </Build>
     <Build Include="Schema Objects\Database Level Objects\Database Triggers\captureDDLChanges.ddltrigger.sql">
       <SubType>Code</SubType>
     </Build>
@@ -701,10 +691,6 @@
     <Build Include="Schema Objects\Schemas\dbo\Views\dbo.vw_transitionContacts.view.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\Portal\Views\Portal.mc_organization.view.sql">
-      <SubType>Code</SubType>
-      <QuotedIdentifier>Off</QuotedIdentifier>
-    </Build>
     <Build Include="Schema Objects\Schemas\dbo\Views\dbo.vw_transitionContactPhones.view.sql">
       <SubType>Code</SubType>
     </Build>
@@ -727,10 +713,6 @@
     <Build Include="Schema Objects\Schemas\dbo\Views\dbo.vw_transitionContactAddresses.view.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\Portal\Views\Portal.mc_contact_orgroles.view.sql">
-      <SubType>Code</SubType>
-      <QuotedIdentifier>Off</QuotedIdentifier>
-    </Build>
     <Build Include="Schema Objects\Schemas\dbo\Views\dbo.vw_transitionRolesRoleCategories.view.sql">
       <SubType>Code</SubType>
     </Build>
@@ -745,26 +727,6 @@
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Views\dbo.vw_transitionRoleCategories.view.sql">
       <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\Portal\Views\Portal.c_emailtype.view.sql">
-      <SubType>Code</SubType>
-      <QuotedIdentifier>Off</QuotedIdentifier>
-    </Build>
-    <Build Include="Schema Objects\Schemas\Portal\Views\Portal.c_orgtype.view.sql">
-      <SubType>Code</SubType>
-      <QuotedIdentifier>Off</QuotedIdentifier>
-    </Build>
-    <Build Include="Schema Objects\Schemas\Portal\Views\Portal.c_orgvertical.view.sql">
-      <SubType>Code</SubType>
-      <QuotedIdentifier>Off</QuotedIdentifier>
-    </Build>
-    <Build Include="Schema Objects\Schemas\Portal\Views\Portal.c_phonetype.view.sql">
-      <SubType>Code</SubType>
-      <QuotedIdentifier>Off</QuotedIdentifier>
-    </Build>
-    <Build Include="Schema Objects\Schemas\Portal\Views\Portal.c_zip.view.sql">
-      <SubType>Code</SubType>
-      <QuotedIdentifier>Off</QuotedIdentifier>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\dbo.Roles.table.sql">
       <SubType>Code</SubType>
@@ -902,24 +864,6 @@
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Database Level Objects\Security\Schemas\Reference.schema.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.OrganizationSystems.synonym.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.tvf_getCoreOrganizationsID.synonym.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.tvf_getCoreContactsID.synonym.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.tvf_getPortalContactsID.synonym.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.vw_transitionOrganizations.synonym.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.Organizations.synonym.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\Conversion\Programmability\Stored Procedures\Conversion.convertContactAddresses.proc.sql" />
