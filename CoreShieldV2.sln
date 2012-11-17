@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "mcCoreShield", "mcCoreShield\mcCoreShield.sqlproj", "{F03ECAB4-9288-46DF-999A-169CEB8A328C}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "mcFoodShield", "mcFoodShield\mcFoodShield.sqlproj", "{2C5634DA-2D89-48F7-813D-292F290CC7A3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,12 @@ Global
 		{F03ECAB4-9288-46DF-999A-169CEB8A328C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F03ECAB4-9288-46DF-999A-169CEB8A328C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F03ECAB4-9288-46DF-999A-169CEB8A328C}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{2C5634DA-2D89-48F7-813D-292F290CC7A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C5634DA-2D89-48F7-813D-292F290CC7A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C5634DA-2D89-48F7-813D-292F290CC7A3}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{2C5634DA-2D89-48F7-813D-292F290CC7A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C5634DA-2D89-48F7-813D-292F290CC7A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C5634DA-2D89-48F7-813D-292F290CC7A3}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
