@@ -158,6 +158,28 @@
     <Folder Include="Schema Objects\Database Level Objects\Storage\Full Text Catalogs\" />
     <Folder Include="Schema Objects\Database Level Objects\Storage\Partition Functions\" />
     <Folder Include="Schema Objects\Database Level Objects\Storage\Partition Schemes\" />
+    <Folder Include="Schema Objects\Schemas\Portal" />
+    <Folder Include="Schema Objects\Schemas\Portal\Programmability" />
+    <Folder Include="Schema Objects\Schemas\Portal\Programmability\Defaults" />
+    <Folder Include="Schema Objects\Schemas\Portal\Programmability\Functions" />
+    <Folder Include="Schema Objects\Schemas\Portal\Programmability\Rules" />
+    <Folder Include="Schema Objects\Schemas\Portal\Programmability\Stored Procedures" />
+    <Folder Include="Schema Objects\Schemas\Portal\Programmability\Types" />
+    <Folder Include="Schema Objects\Schemas\Portal\Programmability\Types\User Defined Data Types" />
+    <Folder Include="Schema Objects\Schemas\Portal\Programmability\Types\User Defined Table Types" />
+    <Folder Include="Schema Objects\Schemas\Portal\Programmability\Types\User Defined Types CLR" />
+    <Folder Include="Schema Objects\Schemas\Portal\Programmability\Types\XML Schema Collections" />
+    <Folder Include="Schema Objects\Schemas\Portal\Synonyms" />
+    <Folder Include="Schema Objects\Schemas\Portal\Tables" />
+    <Folder Include="Schema Objects\Schemas\Portal\Tables\Constraints" />
+    <Folder Include="Schema Objects\Schemas\Portal\Tables\Indexes" />
+    <Folder Include="Schema Objects\Schemas\Portal\Tables\Keys" />
+    <Folder Include="Schema Objects\Schemas\Portal\Tables\Statistics" />
+    <Folder Include="Schema Objects\Schemas\Portal\Tables\Triggers" />
+    <Folder Include="Schema Objects\Schemas\Portal\Views" />
+    <Folder Include="Schema Objects\Schemas\Portal\Views\Indexes" />
+    <Folder Include="Schema Objects\Schemas\Portal\Views\Statistics" />
+    <Folder Include="Schema Objects\Schemas\Portal\Views\Triggers" />
   </ItemGroup>
   <ItemGroup>
     <BuildContributorArgument Include="OutDir=$(OutDir)" />
@@ -7805,6 +7827,12 @@
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Programmability\Functions\dbo.tvf_SplitString.function.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.mc_organization.synonym.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Database Level Objects\Security\Schemas\Portal.schema.sql">
       <SubType>Code</SubType>
     </Build>
   </ItemGroup>
