@@ -540,18 +540,6 @@
     <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\dbo.transitionIdentities.PK_transitionIdentities.pkey.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.convertTransitionSystems.proc.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.createTargetTriggers.proc.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.createTargetSynonyms.proc.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.loadLegacyIDs.proc.sql">
-      <SubType>Code</SubType>
-    </Build>
     <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.getUserSystems.proc.sql">
       <SubType>Code</SubType>
     </Build>
@@ -580,58 +568,13 @@
     <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.mergeOrganizationsNew.proc.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.DeleteSystem.proc.sql">
-      <SubType>Code</SubType>
-    </Build>
     <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.mergePortalOrganizationsNEW.proc.sql">
       <SubType>Code</SubType>
       <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.coreShieldConversion.proc.sql">
-      <SubType>Code</SubType>
-    </Build>
     <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.mergeCoreOrganizationsNew.proc.sql">
       <SubType>Code</SubType>
       <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.convertOrgLocations.proc.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.convertOrgDepartments.proc.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.convertOrganizations.proc.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.convertContactVerifications.proc.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.convertContactPhones.proc.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.convertContactOrgRoles.proc.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.convertContactOrganizations.proc.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.convertContactNotes.proc.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.convertContactEmails.proc.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.convertContactAddresses.proc.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.convertContacts.proc.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.convertRoles.proc.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.convertRoleCategories.proc.sql">
-      <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.mc_roles_category.proc.sql">
       <SubType>Code</SubType>
@@ -670,9 +613,6 @@
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.mc_contact_addresses.proc.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.convertRolesRoleCategories.proc.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.coreMeetingsReport.proc.sql">
@@ -982,6 +922,26 @@
     <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.Organizations.synonym.sql">
       <SubType>Code</SubType>
     </Build>
+    <Build Include="Schema Objects\Schemas\Conversion\Programmability\Stored Procedures\Conversion.convertContactAddresses.proc.sql" />
+    <Build Include="Schema Objects\Schemas\Conversion\Programmability\Stored Procedures\Conversion.convertContactEmails.proc.sql" />
+    <Build Include="Schema Objects\Schemas\Conversion\Programmability\Stored Procedures\Conversion.convertContactNotes.proc.sql" />
+    <Build Include="Schema Objects\Schemas\Conversion\Programmability\Stored Procedures\Conversion.convertContactOrganizations.proc.sql" />
+    <Build Include="Schema Objects\Schemas\Conversion\Programmability\Stored Procedures\Conversion.convertContactOrgRoles.proc.sql" />
+    <Build Include="Schema Objects\Schemas\Conversion\Programmability\Stored Procedures\Conversion.convertContactPhones.proc.sql" />
+    <Build Include="Schema Objects\Schemas\Conversion\Programmability\Stored Procedures\Conversion.convertContacts.proc.sql" />
+    <Build Include="Schema Objects\Schemas\Conversion\Programmability\Stored Procedures\Conversion.convertContactVerifications.proc.sql" />
+    <Build Include="Schema Objects\Schemas\Conversion\Programmability\Stored Procedures\Conversion.convertOrganizations.proc.sql" />
+    <Build Include="Schema Objects\Schemas\Conversion\Programmability\Stored Procedures\Conversion.convertOrgDepartments.proc.sql" />
+    <Build Include="Schema Objects\Schemas\Conversion\Programmability\Stored Procedures\Conversion.convertOrgLocations.proc.sql" />
+    <Build Include="Schema Objects\Schemas\Conversion\Programmability\Stored Procedures\Conversion.convertRoleCategories.proc.sql" />
+    <Build Include="Schema Objects\Schemas\Conversion\Programmability\Stored Procedures\Conversion.convertRoles.proc.sql" />
+    <Build Include="Schema Objects\Schemas\Conversion\Programmability\Stored Procedures\Conversion.convertRolesRoleCategories.proc.sql" />
+    <Build Include="Schema Objects\Schemas\Conversion\Programmability\Stored Procedures\Conversion.convertTransitionSystems.proc.sql" />
+    <Build Include="Schema Objects\Schemas\Conversion\Programmability\Stored Procedures\Conversion.coreShieldConversion.proc.sql" />
+    <Build Include="Schema Objects\Schemas\Conversion\Programmability\Stored Procedures\Conversion.createTargetSynonyms.proc.sql" />
+    <Build Include="Schema Objects\Schemas\Conversion\Programmability\Stored Procedures\Conversion.createTargetTriggers.proc.sql" />
+    <Build Include="Schema Objects\Schemas\Conversion\Programmability\Stored Procedures\Conversion.deleteSystem.proc.sql" />
+    <Build Include="Schema Objects\Schemas\Conversion\Programmability\Stored Procedures\Conversion.loadLegacyIDs.proc.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Debug.publish.xml" />
