@@ -14,18 +14,18 @@ AS
 
 
     Logic Summary:
-    1)  SELECT core Organizations that match on MasterOrganizationName into temp storage
-    2)  SELECT core OrganizationSystems that match Organizations in 1) into temp storage
+    1)  SELECT Core.Organizations that match on MasterOrganizationName into temp storage
+    2)  SELECT Portal.Organizations that match Organizations from 1) into temp storage
     3)  SELECT systemIDs from temp storage into temp storage
     4)  For each system ID --
-    5)  UPDATE one OrganizationSystems record to MasterOrganizationID if MasterOrganization does not have OrganizationSystems record for systemID 
-    6)  SELECT mc_organziationID that will be merged into into variable
-    6)  SELECT mc_organizationIDs for will be merged from into temp storage
+    5)  UPDATE one Portal.Organizations record to MasterOrganizationID if MasterOrganization does not have Portal.Organizations record for systemID 
+    6)  SELECT portalID that will be merged into into variable
+    6)  SELECT portalID for will be merged from into temp storage
     7)  Merge coreShield tables
-    8)  Drop dbo.OrganizationSystems records for merged records
-    9)  Mark dbo.Organizations records as merged
+    8)  Drop Portal.Organizations records for merged records
+    9)  Mark Core.Organizations records as merged
    12)  Merge data on non-core shield tables                      
-   13)  UPDATE Master dbo.Organizations and Master dbo.OrganizationSystems records
+   13)  UPDATE Master Core.Organizations and Master Portal.Organizations records
    14)  process next systemID
 
 
@@ -47,28 +47,28 @@ BEGIN
     IF  OBJECT_ID('tempdb..#Organizations') IS NOT NULL
         DROP TABLE #Organizations ;
         
-    SELECT * INTO #Organizations FROM dbo.Organizations WHERE 1=0 ; 
+    SELECT * INTO #Organizations FROM Core.Organizations WHERE 1=0 ; 
     
     IF  CHARINDEX( '%', @MasterOrganizationName ) > 0 
         INSERT  #Organizations
         SELECT  * 
-          FROM  dbo.Organizations
+          FROM  Core.Organizations
          WHERE  name like @MasterOrganizationName AND id <> @MasterOrganizationID ; 
     ELSE 
         INSERT #Organizations
         SELECT  * 
-          FROM  dbo.Organizations
+          FROM  Core.Organizations
          WHERE  name = @MasterOrganizationName AND id <> @MasterOrganizationID ; 
      
 --  5)  For each system ID --
-    WHILE EXISTS ( SELECT 1 FROM dbo.OrganizationSystems AS os
+    WHILE EXISTS ( SELECT 1 FROM Portal.Organizations AS os
                     INNER JOIN #Organizations AS o on o.id = os.id ) 
     BEGIN 
     
         SELECT  TOP 1 
                 @systemID   = s.id 
               , @systemName = s.systemName
-          FROM  dbo.OrganizationSystems AS os
+          FROM  Portal.Organizations AS os
     INNER JOIN  #Organizations AS o
             ON  o.id = os.id 
     INNER JOIN  dbo.transitionSystems AS s 
@@ -78,29 +78,29 @@ BEGIN
      
           WITH  newRecord AS ( 
                 SELECT  os.id 
-                      , N = ROW_NUMBER() OVER ( ORDER BY mc_organizationID ) 
-                  FROM  dbo.OrganizationSystems AS os 
+                      , N = ROW_NUMBER() OVER ( ORDER BY portalID ) 
+                  FROM  Portal.Organizations AS os 
             INNER JOIN  #Organizations AS o ON o.id = os.id 
                  WHERE  systemID = @systemID ) 
                  
-        UPDATE  dbo.OrganizationSystems
+        UPDATE  Portal.Organizations
            SET  id = @MasterOrganizationID
-          FROM  dbo.OrganizationSystems AS os
+          FROM  Portal.Organizations AS os
     INNER JOIN  newRecord AS n on n.id = os.id 
                 AND os.systemID = @systemID AND n.N = 1 
-         WHERE  NOT EXISTS ( SELECT 1 FROM dbo.OrganizationSystems
+         WHERE  NOT EXISTS ( SELECT 1 FROM Portal.Organizations
                               WHERE id = @MasterOrganizationID AND systemID = @systemID ) ; 
                       
-        SELECT  @MasterPortalID = mc_organizationID
-          FROM  dbo.OrganizationSystems
+        SELECT  @MasterPortalID = portalID
+          FROM  Portal.Organizations
          WHERE  id = @MasterOrganizationID AND systemID = @systemID ; 
          
         IF  OBJECT_ID( 'tempdb..#portalIDs' ) IS NOT NULL   
             DROP TABLE #portalIDs ; 
             
-        SELECT  DISTINCT org_id = mc_organizationID
+        SELECT  DISTINCT org_id = portalID
           INTO  #portalIDs 
-          FROM  dbo.OrganizationSystems AS os
+          FROM  Portal.Organizations AS os
          WHERE  EXISTS ( SELECT 1 from #Organizations AS o 
                           WHERE o.id = os.id ) 
                 AND os.systemID = @systemID ; 
@@ -110,21 +110,21 @@ BEGIN
                                                          , @systemName
                                                          , @MasterOrganizationID ; 
                                                                 
---  8)  Drop dbo.OrganizationSystems records for merged records
-        DELETE  dbo.OrganizationSystems
-          FROM  dbo.OrganizationSystems AS a
+--  8)  Drop Portal.Organizations records for merged records
+        DELETE  Portal.Organizations
+          FROM  Portal.Organizations AS a
          WHERE  EXISTS ( SELECT 1 FROM #Organizations AS b
                           WHERE b.id = a.id ) 
                 AND a.systemID = @systemID ; 
                                     
---  9)  Mark dbo.Organizations records as merged
-        UPDATE  dbo.Organizations
+--  9)  Mark Core.Organizations records as merged
+        UPDATE  Core.Organizations
            SET  name      = name + ' ## MERGED ## ' 
               , isActive  = 0 
               , UpdatedOn = SYSDATETIME()
-          FROM  dbo.Organizations AS a
+          FROM  Core.Organizations AS a
          WHERE  EXISTS ( SELECT 1 FROM #Organizations AS b ) 
-           AND  NOT EXISTS ( SELECT 1 FROM dbo.OrganizationSystems AS os WHERE os.id = a.id ) 
+           AND  NOT EXISTS ( SELECT 1 FROM Portal.Organizations AS os WHERE os.id = a.id ) 
            AND  name not like '%## MERGED ## ' ;
            
 --  12) Merge data on non-core shield tables                      
@@ -134,12 +134,12 @@ BEGIN
             RETURN @rc ;
         
                                                         
---  13) UPDATE Master dbo.Organizations and Master dbo.OrganizationSystems records
-        UPDATE  dbo.Organizations
+--  13) UPDATE Master Core.Organizations and Master Portal.Organizations records
+        UPDATE  Core.Organizations
            SET  UpdatedOn = SYSDATETIME() 
          WHERE  id = @MasterOrganizationID ;                                                                       
             
-        UPDATE  dbo.OrganizationSystems
+        UPDATE  Portal.Organizations
            SET  UpdatedOn = SYSDATETIME() 
          WHERE  id = @MasterOrganizationID AND systemID = @systemID ; 
         

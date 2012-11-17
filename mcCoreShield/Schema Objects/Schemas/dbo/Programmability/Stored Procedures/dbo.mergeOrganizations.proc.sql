@@ -14,24 +14,24 @@ AS
 
 
     Logic Summary:
-    1)  Extract dbo.OrganizationSystems based on @mergingOrganizationIDs into temp storage
+    1)  Extract Portal.Organizations based on @mergingOrganizationIDs into temp storage
     2)  Extract portal data based on @mergingOrganizationIDs into temp storage
-    3)  Merge dbo.Organizations and dbo.OrganizationSystems for each portal
+    3)  Merge Core.Organizations and Portal.Organizations for each portal
     4)  Extract Portal.mc_organization.ID for @MasterOrganizationID
     5)  When master organization does not exist on target portal         
             Select a single record to use as a template        
             Save off Portal.mc_organization.id from template record          
             Build target portal record for master organization, using -1 as the mc_organizationID
-    6)  Build list of dbo.Organization.id values for merge
+    6)  Build list of Core.Organizations.id values for merge
     7)  Merge coreShield tables
-    8)  Drop dbo.OrganizationSystems records for merged records
-    9)  Mark dbo.Organizations records as merged
+    8)  Drop Portal.Organizations records for merged records
+    9)  Mark Core.Organizations records as merged
    10)  If there was a new target portal record built in 5) 
             change the mc_organizationID from -1 to the @TemplatePortalID
             restore the original org_id for non-coreShield tables merge
    11)  Build list of Portal.mc_organization.id values for merge
    12)  Merge data on non-core shield tables                      
-   13)  UPDATE Master dbo.Organizations and Master dbo.OrganizationSystems records
+   13)  UPDATE Master Core.Organizations and Master Portal.Organizations records
 
 ************************************************************************************************************************************
 */
@@ -70,7 +70,7 @@ BEGIN
               , mc_organizationID   int              NULL ) ; 
     
 
---  1)  Extract dbo.OrganizationSystems based on @mergingOrganizationIDs into temp storage
+--  1)  Extract Portal.Organizations based on @mergingOrganizationIDs into temp storage
       WITH  inputData AS ( 
             SELECT id = CAST( Item AS UNIQUEIDENTIFIER ) 
               FROM dbo.tvf_SplitString( @mergingOrganizationIDs, ',' ) )
@@ -82,11 +82,11 @@ BEGIN
           , createdBy           = o.createdBy
           , updatedOn           = o.updatedOn
           , updatedBy           = o.updatedBy
-          , mc_organizationID   = COALESCE( mc_organizationID, -1 )
+          , portalID            = COALESCE( portalID, -1 )
       INTO  #MergingOrganizations
-      FROM  dbo.Organizations AS o
+      FROM  Core.Organizations AS o
 INNER JOIN  inputData AS i ON i.id = o.id
- LEFT JOIN  dbo.OrganizationSystems AS os ON os.id = o.id ; 
+ LEFT JOIN  Portal.Organizations AS os ON os.id = o.id ; 
       
 
 --  2)  Extract portal data based on @mergingOrganizationIDs into temp storage
@@ -96,7 +96,7 @@ INNER JOIN  inputData AS i ON i.id = o.id
      WHERE  id IN ( SELECT DISTINCT systemID FROM #MergingOrganizations ) ; 
      
 
---  3)  Merge dbo.Organizations and dbo.OrganizationSystems for each portal
+--  3)  Merge Core.Organizations and Portal.Organizations for each portal
      WHILE  EXISTS ( SELECT 1 FROM #portalData ) 
      BEGIN
 
@@ -114,8 +114,8 @@ INNER JOIN  inputData AS i ON i.id = o.id
 
               
 --  4)  Extract Portal.mc_organization.ID for @MasterOrganizationID
-        SELECT  @MasterPortalID = mc_organizationID
-          FROM  dbo.OrganizationSystems
+        SELECT  @MasterPortalID = portalID
+          FROM  Portal.Organizations
          WHERE  id = @MasterOrganizationID AND systemID = @systemID ;
 
          
@@ -135,12 +135,12 @@ INNER JOIN  inputData AS i ON i.id = o.id
               FROM  @TemplateOrgSystemsRecord ; 
             
 --          Build target portal record for master organization, using -1 as the mc_organizationID
-            INSERT  dbo.OrganizationSystems ( 
+            INSERT  Portal.Organizations ( 
                         id, systemID
                             , organizationTypeID, verticalID
                             , createdOn, createdBy
                             , updatedOn, updatedBy
-                            , mc_organizationID )
+                            , portalID )
             OUTPUT  inserted.* INTO @InsertedOrgSystemsRecord
             SELECT  @MasterOrganizationID, systemID
                         , organizationTypeID, verticalID
@@ -150,7 +150,7 @@ INNER JOIN  inputData AS i ON i.id = o.id
               FROM  @TemplateOrgSystemsRecord ; 
         END
                 
---  6)  Build list of dbo.Organization.id values for merge
+--  6)  Build list of Core.Organizations.id values for merge
         SELECT  @mergingCoreShieldIDs = STUFF (( SELECT ',' + CAST( id AS VARCHAR(50) )
                                                    FROM #MergingOrganizations
                                                   WHERE systemID = @systemID
@@ -161,30 +161,30 @@ INNER JOIN  inputData AS i ON i.id = o.id
                                                       , @MasterOrganizationID
                                                       , @mergingCoreShieldIDs ; 
                                                                 
---  8)  Drop dbo.OrganizationSystems records for merged records
-        DELETE  dbo.OrganizationSystems
-          FROM  dbo.OrganizationSystems AS a
+--  8)  Drop Portal.Organizations records for merged records
+        DELETE  Portal.Organizations
+          FROM  Portal.Organizations AS a
          WHERE  EXISTS ( SELECT 1 FROM #MergingOrganizations AS b
                           WHERE b.id = a.id ) 
                 AND a.systemID = @systemID ; 
                                     
---  9)  Mark dbo.Organizations records as merged
-        UPDATE  dbo.Organizations
+--  9)  Mark Core.Organizations records as merged
+        UPDATE  Core.Organizations
            SET  name      = name + ' ## MERGED ## ' 
               , isActive  = 0 
               , UpdatedOn = SYSDATETIME()
-          FROM  dbo.Organizations AS a
+          FROM  Core.Organizations AS a
          WHERE  EXISTS ( SELECT 1 FROM #MergingOrganizations AS b
                           WHERE b.id = a.id AND b.systemID = @systemID ) 
-           AND  NOT EXISTS ( SELECT 1 FROM dbo.OrganizationSystems AS os WHERE os.id = a.id ) ; 
+           AND  NOT EXISTS ( SELECT 1 FROM Portal.Organizations AS os WHERE os.id = a.id ) ; 
            
 --  10) If there was a new target portal record built in 5) 
         IF  ( @MasterPortalID = -1 ) 
         BEGIN 
 --          change the mc_organizationID from -1 to the @TemplatePortalID
-            UPDATE  dbo.OrganizationSystems
-               SET  mc_organizationID = @TemplatePortalID
-              FROM  dbo.OrganizationSystems
+            UPDATE  Portal.Organizations
+               SET  portalID = @TemplatePortalID
+              FROM  Portal.Organizations
              WHERE  id = @MasterOrganizationID AND systemID = @systemID ; 
             
 --          restore the original org_id for non-coreShield tables merge
@@ -202,12 +202,12 @@ INNER JOIN  inputData AS i ON i.id = o.id
                                                         , @MasterPortalID
                                                         , @mergingPortalIDs ;     
                                                         
---  13) UPDATE Master dbo.Organizations and Master dbo.OrganizationSystems records
-        UPDATE  dbo.Organizations
+--  13) UPDATE Master Core.Organizations and Master Portal.Organizations records
+        UPDATE  Core.Organizations
            SET  UpdatedOn = SYSDATETIME() 
          WHERE  id = @MasterOrganizationID ;                                                                       
             
-        UPDATE  dbo.OrganizationSystems
+        UPDATE  Portal.Organizations
            SET  UpdatedOn = SYSDATETIME() 
          WHERE  id = @MasterOrganizationID AND systemID = @systemID ; 
         

@@ -7786,9 +7786,6 @@
     <Build Include="Schema Objects\Schemas\dbo\Synonyms\dbo.Roles.synonym.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Synonyms\dbo.OrganizationSystems.synonym.sql">
-      <SubType>Code</SubType>
-    </Build>
     <Build Include="Schema Objects\Schemas\dbo\Synonyms\dbo.vw_transitionRoles.synonym.sql">
       <SubType>Code</SubType>
     </Build>
@@ -7817,9 +7814,6 @@
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Synonyms\dbo.transitionSystems.synonym.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Synonyms\dbo.Organizations.synonym.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Programmability\Functions\dbo.tvf_SplitString.function.sql">

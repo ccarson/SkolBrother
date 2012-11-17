@@ -249,6 +249,29 @@
     <Folder Include="Schema Objects\Schemas\Portal\Views\Triggers\" />
     <Folder Include="Schema Objects\Schemas\Portal\Views\Statistics\" />
     <Folder Include="Schema Objects\Schemas\dbo\Tables\Defaults" />
+    <Folder Include="Schema Objects\Schemas\Core" />
+    <Folder Include="Schema Objects\Schemas\Core\Programmability" />
+    <Folder Include="Schema Objects\Schemas\Core\Programmability\Defaults" />
+    <Folder Include="Schema Objects\Schemas\Core\Programmability\Functions" />
+    <Folder Include="Schema Objects\Schemas\Core\Programmability\Rules" />
+    <Folder Include="Schema Objects\Schemas\Core\Programmability\Stored Procedures" />
+    <Folder Include="Schema Objects\Schemas\Core\Programmability\Types" />
+    <Folder Include="Schema Objects\Schemas\Core\Programmability\Types\User Defined Data Types" />
+    <Folder Include="Schema Objects\Schemas\Core\Programmability\Types\User Defined Table Types" />
+    <Folder Include="Schema Objects\Schemas\Core\Programmability\Types\User Defined Types CLR" />
+    <Folder Include="Schema Objects\Schemas\Core\Programmability\Types\XML Schema Collections" />
+    <Folder Include="Schema Objects\Schemas\Core\Synonyms" />
+    <Folder Include="Schema Objects\Schemas\Core\Tables" />
+    <Folder Include="Schema Objects\Schemas\Core\Tables\Constraints" />
+    <Folder Include="Schema Objects\Schemas\Core\Tables\Indexes" />
+    <Folder Include="Schema Objects\Schemas\Core\Tables\Keys" />
+    <Folder Include="Schema Objects\Schemas\Core\Tables\Statistics" />
+    <Folder Include="Schema Objects\Schemas\Core\Tables\Triggers" />
+    <Folder Include="Schema Objects\Schemas\Core\Views" />
+    <Folder Include="Schema Objects\Schemas\Core\Views\Indexes" />
+    <Folder Include="Schema Objects\Schemas\Core\Views\Statistics" />
+    <Folder Include="Schema Objects\Schemas\Core\Views\Triggers" />
+    <Folder Include="Schema Objects\Schemas\Core\Tables\Defaults" />
   </ItemGroup>
   <ItemGroup>
     <BuildContributorArgument Include="OutDir=$(OutDir)" />
@@ -285,21 +308,6 @@
     <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\dbo.ContactPhones.FK_ContactPhones_Contacts.fkey.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\dbo.ContactOrgRoles.FK_ContactOrgRoles_Roles.fkey.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\dbo.ContactOrgRoles.FK_ContactOrgRoles_Contacts.fkey.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\dbo.ContactOrgRoles.FK_ContactOrgRoles_Organizations.fkey.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\dbo.ContactOrganizations.FK_ContactOrganizations_Organizations.fkey.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\dbo.ContactOrganizations.FK_ContactOrganizations_Contacts.fkey.sql">
-      <SubType>Code</SubType>
-    </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\dbo.ContactNotes.FK_ContactNotes_Contacts.fkey.sql">
       <SubType>Code</SubType>
     </Build>
@@ -310,12 +318,6 @@
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\dbo.ContactAddresses.FK_ContactAddresses_Contacts.fkey.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\dbo.OrgDepartments.FK_OrgDepartments_Organizations.fkey.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\dbo.OrgLocations.FK_OrgLocations_Organizations.fkey.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\dbo.smeCategories.fk_typeID.fkey.sql">
@@ -334,9 +336,6 @@
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\dbo.smeCategoryRecords.fk_agentRecordID.fkey.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Indexes\dbo.OrganizationSystems.indexes.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Indexes\dbo.ContactOrgRoles.ContactsOrgRoles_ix2.index.sql">
@@ -367,9 +366,6 @@
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Indexes\dbo.OrgLocations.IX_OrgLocations.index.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Indexes\dbo.Organizations.indexes.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Indexes\dbo.transitionIdentities.IX_transitionIdentities_K2_4_3_I1.index.sql">
@@ -433,12 +429,6 @@
     <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\dbo.ContactPhones.PK_ContactPhones.pkey.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\dbo.ContactOrgRoles.PK_ContactOrgRoles.pkey.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\dbo.ContactOrganizations.PK_ContactOrganizations.pkey.sql">
-      <SubType>Code</SubType>
-    </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\dbo.ContactNotes.PK_ContactNotes.pkey.sql">
       <SubType>Code</SubType>
     </Build>
@@ -460,9 +450,6 @@
     <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\dbo.smeAcademicDegree.PK_cCIPCodes.pkey.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\dbo.OrgDepartments.PK_OrgDepartments.pkey.sql">
-      <SubType>Code</SubType>
-    </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\dbo.smeAcademicMajors.PK_cCIPFamilies.pkey.sql">
       <SubType>Code</SubType>
     </Build>
@@ -470,9 +457,6 @@
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\Meta\Tables\Keys\Meta.databaseObjectChanges.PK_databaseObjectChanges.pkey.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\dbo.OrgLocations.PK_OrgLocations.pkey.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\dbo.smeAcademicUniversities.PK_refCollegesUniversities.pkey.sql">
@@ -518,9 +502,6 @@
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\Reference\Tables\Keys\Reference.Verticals.PK_Verticals.pkey.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\dbo.Organizations.keys.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\dbo.transitionIdentities.PK_transitionIdentities.pkey.sql">
@@ -719,9 +700,6 @@
     <Build Include="Schema Objects\Schemas\dbo\Tables\dbo.RoleCategories.table.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\dbo.OrganizationSystems.table.sql">
-      <SubType>Code</SubType>
-    </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\dbo.transitionSystems.table.sql">
       <SubType>Code</SubType>
     </Build>
@@ -827,9 +805,6 @@
     <Build Include="Schema Objects\Schemas\Reference\Tables\Reference.Verticals.table.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\dbo.Organizations.table.sql">
-      <SubType>Code</SubType>
-    </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\dbo.transitionIdentities.table.sql">
       <SubType>Code</SubType>
     </Build>
@@ -868,12 +843,6 @@
     <Build Include="Schema Objects\Schemas\Conversion\Programmability\Stored Procedures\Conversion.createTargetTriggers.proc.sql" />
     <Build Include="Schema Objects\Schemas\Conversion\Programmability\Stored Procedures\Conversion.deleteSystem.proc.sql" />
     <Build Include="Schema Objects\Schemas\Conversion\Programmability\Stored Procedures\Conversion.loadLegacyIDs.proc.sql" />
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Defaults\dbo.Organizations.defaults.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\dbo.OrganizationSystems.keys.sql">
-      <SubType>Code</SubType>
-    </Build>
     <Build Include="Schema Objects\Schemas\Portal\Views\Portal.mc_organization.view.sql">
       <SubType>Code</SubType>
       <QuotedIdentifier>Off</QuotedIdentifier>
@@ -885,6 +854,42 @@
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Views\dbo.vw_transitionOrganizations.view.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Database Level Objects\Security\Schemas\Core.schema.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\Core\Tables\Core.Organizations.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\Portal\Tables\Portal.Organizations.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\Core\Tables\Defaults\Core.Organizations.defaults.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\dbo.ContactOrganizations.keys.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\dbo.ContactOrgRoles.keys.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\Core\Tables\Indexes\Core.Organizations.indexes.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\Portal\Tables\Indexes\Portal.Organizations.indexes.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\Core\Tables\Keys\Core.Organizations.keys.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\Portal\Tables\Keys\Portal.Organizations.keys.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\dbo.OrgDepartments.keys.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\dbo.OrgLocations.keys.sql">
       <SubType>Code</SubType>
     </Build>
   </ItemGroup>

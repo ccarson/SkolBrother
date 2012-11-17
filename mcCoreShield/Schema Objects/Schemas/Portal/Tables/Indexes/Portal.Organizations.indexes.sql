@@ -1,5 +1,5 @@
-﻿CREATE UNIQUE NONCLUSTERED INDEX IX_OrganizationSystems
-    ON dbo.OrganizationSystems( systemID ASC, mc_organizationID ASC )
+﻿CREATE UNIQUE NONCLUSTERED INDEX IX_Organizations
+    ON Portal.Organizations( systemID ASC, portalID ASC )
         INCLUDE(id) 
     WITH ( ALLOW_PAGE_LOCKS       = ON
          , ALLOW_ROW_LOCKS        = ON

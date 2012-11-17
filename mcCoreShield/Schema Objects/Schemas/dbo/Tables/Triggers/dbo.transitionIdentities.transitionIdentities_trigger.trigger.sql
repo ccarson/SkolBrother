@@ -30,11 +30,11 @@ BEGIN
                                                   WHERE tableName = 'mc_organization' ) )
     RETURN ;
 
-    UPDATE  dbo.OrganizationSystems
-       SET  mc_organizationID = i.legacyID
-      FROM  dbo.OrganizationSystems os
+    UPDATE  Portal.Organizations
+       SET  portalID = i.legacyID
+      FROM  Portal.Organizations AS p
 INNER JOIN  inserted AS i
-        ON  i.id = os.id
-            AND i.transitionSystemsID = systemID
-            AND i.legacyID <> os.mc_organizationID ;
+        ON  i.id = p.id
+            AND i.transitionSystemsID = p.systemID
+            AND i.legacyID <> p.portalID ;
 END

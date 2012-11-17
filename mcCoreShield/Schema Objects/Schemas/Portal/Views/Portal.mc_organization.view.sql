@@ -14,30 +14,28 @@ AS
 
 ************************************************************************************************************************************
 */
-    SELECT  id              = os.mc_organizationID
-          , Name            = o.Name
-          , Website         = o.Website
-          , Status          = o.Status
-          , Summary         = o.Summary
-          , type_id         = os.organizationTypeID
-          , vertical_id     = os.verticalID
-          , active          = o.isActive
-          , brand_id        = o.brandID
-          , is_demo         = o.isDemo
-          , temp            = o.isTemp
-          , date_added      = os.createdOn
+    SELECT  id              = p.portalID
+          , Name            = c.Name
+          , Website         = c.Website
+          , Status          = c.Status
+          , Summary         = c.Summary
+          , type_id         = p.organizationTypeID
+          , vertical_id     = p.verticalID
+          , active          = c.isActive
+          , brand_id        = c.brandID
+          , is_demo         = c.isDemo
+          , temp            = c.isTemp
+          , date_added      = p.createdOn
           , added_by        = ISNULL( x.ContactsID, 0 )
-          , date_updated    = os.updatedOn
+          , date_updated    = p.updatedOn
           , updated_by      = ISNULL( y.ContactsID, 0 )
           , portalDB        = s.systemDBName
-          , OrganizationID  = o.id
-      FROM  dbo.Organizations       AS o
-INNER JOIN  dbo.OrganizationSystems AS os
-        ON  os.id = o.id
-INNER JOIN  dbo.Systems             AS s
-        ON  s.id  = os.systemID
+          , OrganizationID  = c.id
+      FROM  Core.Organizations        AS c
+INNER JOIN  Portal.Organizations      AS p ON  p.id = c.id
+INNER JOIN  dbo.Systems               AS s ON  s.id = p.systemID
  LEFT JOIN  dbo.vw_transitionContacts AS x
-        ON  x.id = os.createdBy AND x.transitionSystemsID = s.ID
+        ON  x.id = p.createdBy AND x.transitionSystemsID = s.ID
  LEFT JOIN  dbo.vw_transitionContacts AS y
-        ON  y.id = os.updatedBy AND y.transitionSystemsID = s.ID ;
+        ON  y.id = p.updatedBy AND y.transitionSystemsID = s.ID ;
 

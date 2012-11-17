@@ -5,7 +5,7 @@ AS
 
        View:    dbo.vw_transitionOrganizations
      Author:    ccarson
-    Purpose:    displays data from mcCoreSHIELD.dbo.OrganizationSystems, relating coreSHIELD org to legacy dbo.mc_organzation
+    Purpose:    displays data from Portal.Organizations, relating coreSHIELD org to legacy dbo.mc_organzation
 
     Revision History:
     revisor     date            Version     description
@@ -20,5 +20,5 @@ AS
 */
     SELECT  id
           , transitionSystemsID = systemID
-          , OrganizationsID     = mc_organizationID
-      FROM  dbo.OrganizationSystems ;
+          , OrganizationsID     = portalID
+      FROM  Portal.Organizations ;

@@ -1,5 +1,5 @@
 ﻿CREATE NONCLUSTERED INDEX IX_Organizations
-    ON dbo.Organizations( Name ASC ) 
+    ON Core.Organizations( Name ASC ) 
     WITH ( ALLOW_PAGE_LOCKS       = ON
          , ALLOW_ROW_LOCKS        = ON
          , PAD_INDEX              = OFF
