@@ -5,7 +5,8 @@
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
     <VisualStudioVersion Condition="'$(SSDTExists)' == ''">10.0</VisualStudioVersion>
-    <PostConversionRemoveFromScc>;C:\DSCXN\Projects\CoreShieldV2\mcCoreShield\Properties\Database.sqldeployment;C:\DSCXN\Projects\CoreShieldV2\mcCoreShield\Properties\Database.sqlsettings;Properties\Database.sqlsettings;Properties\Database.sqldeployment;Properties\Database.sqlcmdvars;Properties\Database.sqlpermissions;Schema Objects\Database Level Objects\Storage\Files\mcCoreShield_log.sqlfile.sql;Schema Objects\Database Level Objects\Storage\Files\PRIMARY.mcCoreShield.sqlfile.sql;C:\DSCXN\Projects\CoreShieldV2\mcCoreShield\mcCoreShield.dbproj</PostConversionRemoveFromScc>
+    <PostConversionRemoveFromScc>
+    </PostConversionRemoveFromScc>
     <PostConversionAddToScc>
     </PostConversionAddToScc>
     <TargetDatabaseSet>True</TargetDatabaseSet>
@@ -21,7 +22,7 @@
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
-    <IncludeSchemaNameInFileName>False</IncludeSchemaNameInFileName>
+    <IncludeSchemaNameInFileName>True</IncludeSchemaNameInFileName>
     <ModelCollation>1033,CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <LoadSqlClrTypes>True</LoadSqlClrTypes>
@@ -32,7 +33,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{f03ecab4-9288-46df-999a-169ceb8a328c}</ProjectGuid>
     <GenerateDatabaseFile>False</GenerateDatabaseFile>
-    <GenerateCreateScript>False</GenerateCreateScript>
+    <GenerateCreateScript>True</GenerateCreateScript>
     <SqlServerVerification>True</SqlServerVerification>
     <TargetLanguage>CS</TargetLanguage>
     <AllowSnapshotIsolation>False</AllowSnapshotIsolation>

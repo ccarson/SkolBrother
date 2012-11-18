@@ -63,38 +63,38 @@ BEGIN
 		
 	end
 
-	IF @operation = 'UPDATE'
-	BEGIN 
-		SELECT u.data.value('@RoleTitle[1]', 'nvarchar(50)') AS RoleTitle
-			, u.data.value('@Active[1]', 'bit') AS Active
-			, u.data.value('@parentid[1]', 'int') AS parentid
-			, u.data.value('@id[1]', 'int') AS id
-			, u.data.value('@category_id[1]', 'int') AS category_id
-			, u.data.value('@statepage_include[1]', 'bit') AS statepage_include		
-		INTO #updates
-		FROM @dataXML.nodes('u/data') AS u(data);				
-	
-		UPDATE dbo.Roles SET 
-			RoleTitle = u.RoleTitle
-			, isActive = u.Active
-			, parentRolesID = COALESCE( tr2.ID, 0 )
-			, statepage_include = u.statepage_include
-		FROM dbo.Roles as r
-		INNER JOIN dbo.vw_transitionRoles AS tr1 ON tr1.id = r.id 
-			AND	tr1.transitionSystemsID = @systemID
-		INNER JOIN #updates AS u ON u.id = tr1.RolesID
-		LEFT OUTER JOIN dbo.vw_transitionRoles AS tr2 ON tr2.RolesID = u.parentid
-			AND	tr2.transitionSystemsID = @systemID
-					
-		IF @@ROWCOUNT <> @recordsIN
-		BEGIN
-			SET @errorMessage = N'UPDATE failed! ' + 
-									CAST( @recordsIN AS NVARCHAR(10) ) + N' records in, ' + 
-									CAST( @@ROWCOUNT AS NVARCHAR(10) ) + N' records UPDATED.';
-			RETURN 16;
-		END			
-				
-	END
+--	IF @operation = 'UPDATE'
+--	BEGIN 
+--		SELECT u.data.value('@RoleTitle[1]', 'nvarchar(50)') AS RoleTitle
+--			, u.data.value('@Active[1]', 'bit') AS Active
+--			, u.data.value('@parentid[1]', 'int') AS parentid
+--			, u.data.value('@id[1]', 'int') AS id
+--			, u.data.value('@category_id[1]', 'int') AS category_id
+--			, u.data.value('@statepage_include[1]', 'bit') AS statepage_include		
+--		INTO #updates
+--		FROM @dataXML.nodes('u/data') AS u(data);				
+--	
+--		UPDATE dbo.Roles SET 
+--			RoleTitle = u.RoleTitle
+--			, isActive = u.Active
+--			, parentRolesID = COALESCE( tr2.ID, 0 )
+--			, statepage_include = u.statepage_include
+--		FROM dbo.Roles as r
+--		INNER JOIN dbo.vw_transitionRoles AS tr1 ON tr1.id = r.id 
+--			AND	tr1.transitionSystemsID = @systemID
+--		INNER JOIN #updates AS u ON u.id = tr1.RolesID
+--		LEFT OUTER JOIN dbo.vw_transitionRoles AS tr2 ON tr2.RolesID = u.parentid
+--			AND	tr2.transitionSystemsID = @systemID
+--					
+--		IF @@ROWCOUNT <> @recordsIN
+--		BEGIN
+--			SET @errorMessage = N'UPDATE failed! ' + 
+--									CAST( @recordsIN AS NVARCHAR(10) ) + N' records in, ' + 
+--									CAST( @@ROWCOUNT AS NVARCHAR(10) ) + N' records UPDATED.';
+--			RETURN 16;
+--		END			
+--				
+--	END
 	
 	IF @operation = 'DELETE'
 	BEGIN 

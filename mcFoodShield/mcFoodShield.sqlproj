@@ -5,7 +5,8 @@
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
     <VisualStudioVersion Condition="'$(SSDTExists)' == ''">10.0</VisualStudioVersion>
-    <PostConversionRemoveFromScc>;C:\DSCXN\Projects\CoreShieldV2\mcFoodShield\Properties\Database.sqldeployment;C:\DSCXN\Projects\CoreShieldV2\mcFoodShield\Properties\Database.sqlsettings;Properties\Database.sqlsettings;Properties\Database.sqldeployment;Properties\Database.sqlcmdvars;Properties\Database.sqlpermissions;Schema Objects\Database Level Objects\Storage\Files\mcfoodshield_log.sqlfile.sql;Schema Objects\Database Level Objects\Storage\Files\PRIMARY.mcfoodshield.sqlfile.sql;C:\DSCXN\Projects\CoreShieldV2\mcFoodShield\mcFoodShield.dbproj</PostConversionRemoveFromScc>
+    <PostConversionRemoveFromScc>
+    </PostConversionRemoveFromScc>
     <PostConversionAddToScc>
     </PostConversionAddToScc>
     <TargetDatabaseSet>True</TargetDatabaseSet>
@@ -21,7 +22,7 @@
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
-    <IncludeSchemaNameInFileName>False</IncludeSchemaNameInFileName>
+    <IncludeSchemaNameInFileName>True</IncludeSchemaNameInFileName>
     <ModelCollation>1033,CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <LoadSqlClrTypes>True</LoadSqlClrTypes>
@@ -32,9 +33,9 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{2c5634da-2d89-48f7-813d-292f290cc7a3}</ProjectGuid>
     <GenerateDatabaseFile>False</GenerateDatabaseFile>
-    <GenerateCreateScript>False</GenerateCreateScript>
-    <SqlServerVerification>True</SqlServerVerification>
-    <TargetLanguage>CS</TargetLanguage>
+    <GenerateCreateScript>True</GenerateCreateScript>
+    <SqlServerVerification>False</SqlServerVerification>
+    <TargetLanguage>VB</TargetLanguage>
     <AllowSnapshotIsolation>False</AllowSnapshotIsolation>
     <AnsiNullDefault>True</AnsiNullDefault>
     <AnsiNulls>True</AnsiNulls>
