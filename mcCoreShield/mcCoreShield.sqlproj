@@ -857,6 +857,9 @@
     <Build Include="Schema Objects\Schemas\Core\Tables\Keys\Core.Contacts.keys.sql">
       <SubType>Code</SubType>
     </Build>
+    <Build Include="Schema Objects\Schemas\Portal\Views\Portal.mc_contact.view.sql">
+      <SubType>Code</SubType>
+    </Build>
   </ItemGroup>
   <ItemGroup>
     <None Include="Debug.publish.xml" />

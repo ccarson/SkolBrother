@@ -1,4 +1,19 @@
-﻿CREATE VIEW dbo.mc_contact AS SELECT 
+﻿CREATE VIEW dbo.mc_contact 
+AS 
+/*
+************************************************************************************************************************************
+
+       View:    dbo.mc_contact
+     Author:    Chris Carson
+    Purpose:    portal-specific view of core.mc_contact data
+
+    revisor    date         description
+    ---------  ---------    ----------------------------
+    ccarson    ##DATE###    Created
+
+************************************************************************************************************************************
+*/
+SELECT 
 	t1.contactsID AS id, c.Salutation, c.JobTitle
 	, c.Firstname, c.Initial, c.Lastname
 	, c.Suffix, c.Email, c.Login
