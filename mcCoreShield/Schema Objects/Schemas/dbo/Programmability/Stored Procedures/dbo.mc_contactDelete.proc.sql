@@ -34,7 +34,7 @@ BEGIN
           , @inserted           AS INT = 0
           , @deleted            AS INT = 0
           , @systemID           AS INT = 0 
-          , @unknownUser    AS UNIQUEIDENTIFIER = N'00000000-0000-0000-0000-000000000001'     
+          , @unknownUser    AS UNIQUEIDENTIFIER = N'00000000-0000-0000-0000-000000000001' ; 
           
 --  1)  Add contactID field to incoming data
     ALTER TABLE #mc_contact ADD contactID   UNIQUEIDENTIFIER NULL ; 
@@ -49,7 +49,7 @@ INNER JOIN  Portal.Contacts AS p ON p.portalID = m.id AND p.systemID = @systemID
 --  3)  DELETE Portal.Contacts
       WITH  records AS ( 
             SELECT * FROM Portal.Contacts AS p 
-             WHERE EXISTS ( SELECT 1 FROM #mc_contact AS m WHERE m.contactID = p.id AND p.systemID = @systemID ) 
+             WHERE EXISTS ( SELECT 1 FROM #mc_contact AS m WHERE m.contactID = p.id AND p.systemID = @systemID ) )
     DELETE  records ; 
     
 

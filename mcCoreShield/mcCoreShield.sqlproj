@@ -470,8 +470,9 @@
     <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.mergePortalOrganizations.proc.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.process_mc_contact.proc.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.mc_contactMerge.proc.sql">
       <SubType>Code</SubType>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.mergeOrganizationsNew.proc.sql">
       <SubType>Code</SubType>
@@ -859,6 +860,10 @@
     </Build>
     <Build Include="Schema Objects\Schemas\Portal\Views\Portal.mc_contact.view.sql">
       <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.mc_contactDelete.proc.sql">
+      <SubType>Code</SubType>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
     </Build>
   </ItemGroup>
   <ItemGroup>

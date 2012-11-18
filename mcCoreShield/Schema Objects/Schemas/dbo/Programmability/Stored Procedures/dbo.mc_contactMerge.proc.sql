@@ -36,13 +36,18 @@ BEGIN
 
     DECLARE @updated            AS INT = 0
           , @rows               AS INT = 0
-          , @contactInserts     AS INT = 0
-          , @contactUpdates     AS INT = 0
+          , @coreContactInserts     AS INT = 0
+          , @coreContactUpdates     AS INT = 0
+          , @portalContactInserts     AS INT = 0
+          , @portalContactUpdates     AS INT = 0
           , @legacyID           AS INT = 0
           , @inserted           AS INT = 0
           , @deleted            AS INT = 0
           , @systemID           AS INT = 0
-          , @adminUser          AS UNIQUEIDENTIFIER = N'00000000-0000-0000-0000-000000000000'
+          , @adminUser          AS UNIQUEIDENTIFIER = N'00000000-0000-0000-0000-000000000000' ; 
+          
+    DECLARE @coreMergeResults   TABLE ( action NVARCHAR(10), id UNIQUEIDENTIFIER ) ; 
+    DECLARE @portalMergeResults TABLE ( action NVARCHAR(10), id UNIQUEIDENTIFIER ) ; 
 
 
 --  1)  Assign new portalID to incoming records that are not already assigned
@@ -57,7 +62,6 @@ BEGIN
     UPDATE  #mc_contact
        SET  @legacyID = id = @legacyID + 1
      WHERE  id IS NULL ;
-    SELECT  @incomingINSERTs = @@ROWCOUNT ;
 
 
 --  2)  Add coreID fields for contactID, createdID, updatedID, verifiedID
@@ -181,7 +185,7 @@ BEGIN
                         , src.iDoc_Usage, src.assist_id, src.layout, src.bTOS, src.bOnlineNow, src.uID, src.iwkgrplayout
                         , src.sAboutMe, src.folder_ID, src.signature, src.bAuditLock, src.bProfileUpdate
                         , src.bexpirereminder, src.bPingSent, src.dPingDate, src.inetwork
-                        , src.createdOn, src.createdBy, src.updatedOn, src.updatedBy )
+                        , src.createdOn, src.createdBy, src.updatedOn, src.updatedBy ) 
     OUTPUT  $action, inserted.id INTO @coreMergeResults ;
     SELECT  @rows = @@ROWCOUNT ;
 
@@ -200,8 +204,8 @@ BEGIN
 
 
 --  6)  MERGE incoming data onto Portal.Contacts
-     MERGE  Core.Contacts AS tgt
-     USING  #mc_contact   AS src
+     MERGE  Portal.Contacts AS tgt
+     USING  #mc_contact     AS src
         ON  src.contactID = tgt.id
       WHEN  MATCHED
       THEN  UPDATE

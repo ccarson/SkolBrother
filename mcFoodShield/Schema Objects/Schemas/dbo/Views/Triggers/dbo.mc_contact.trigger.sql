@@ -29,10 +29,6 @@ BEGIN
           , @recordsIN      AS INT
           , @errorMessage   AS NVARCHAR(MAX) ;
 
-    SELECT  @systemID = id
-      FROM  dbo.transitionSystems
-     WHERE  systemName = db_name() ;
-
     CREATE TABLE #mc_contact ( id               INT
                              , Salutation       NVARCHAR (20)
                              , JobTitle         NVARCHAR (255)
