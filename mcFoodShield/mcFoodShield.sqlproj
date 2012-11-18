@@ -7833,6 +7833,9 @@
     <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.process_mc_organization.synonym.sql">
       <SubType>Code</SubType>
     </Build>
+    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.mc_contact.synonym.sql">
+      <SubType>Code</SubType>
+    </Build>
   </ItemGroup>
   <ItemGroup>
     <None Include="Debug.publish.xml" />

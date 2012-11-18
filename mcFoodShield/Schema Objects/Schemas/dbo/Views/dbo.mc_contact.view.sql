@@ -1,48 +1,82 @@
-﻿CREATE VIEW dbo.mc_contact 
-AS 
+﻿CREATE VIEW dbo.mc_contact
+AS
 /*
 ************************************************************************************************************************************
-
        View:    dbo.mc_contact
      Author:    Chris Carson
     Purpose:    portal-specific view of core.mc_contact data
-
     revisor    date         description
     ---------  ---------    ----------------------------
     ccarson    ##DATE###    Created
-
 ************************************************************************************************************************************
 */
-SELECT 
-	t1.contactsID AS id, c.Salutation, c.JobTitle
-	, c.Firstname, c.Initial, c.Lastname
-	, c.Suffix, c.Email, c.Login
-	, c.Password, c.salt, c.AccessID
-	, c.Expires, c.Hits, c.LastLogin
-	, c.Status, c.ModifiedBy, c.DateModified
-	, c.datejoined, c.membertype, c.photo
-	, c.resume, c.thumb, c.PIN
-	, c.reset, c.mailsent, c.sysmember
-	, c.maildate, c.updatesent, c.updatenum
-	, c.nosend, c.hidden, c.security_level
-	, c.review, c.Q1, c.Q2
-	, c.Q3, c.iAnswer, c.ipMac
-	, c.frequency_id, c.refer, c.is_active
-	, c.TimeZone, c.usesDaylight, c.TzOffset
-	, c.iDefault_Quota, c.iDoc_Usage, c.assist_id
-	, c.layout, c.bTOS, c.bOnlineNow
-	, c.uID, c.iwkgrplayout, c.sAboutMe
-	, c.folder_id, c.signature, c.dateAdded
-	, COALESCE( t2.contactsID, 0 ) AS addedBy, c.bAuditLock, c.bProfileUpdate
-	, c.bexpirereminder, c.bPingSent, c.dPingDate
-	, c.bVerified, COALESCE( t3.contactsID, 0 ) AS iVerifiedBy, c.dVerifiedDate, c.inetwork
-	FROM dbo.Contacts AS c
-	INNER JOIN dbo.vw_transitionContacts AS t1 ON t1.id = c.id
-		AND t1.transitionSystemsID = ( SELECT id FROM dbo.transitionSystems 
-										WHERE systemName = db_name() )				
-	LEFT OUTER JOIN dbo.vw_transitionContacts AS t2 ON t2.id = c.addedBy
-		AND t2.transitionSystemsID = ( SELECT id FROM dbo.transitionSystems 
-										WHERE systemName = db_name() )				
-	LEFT OUTER JOIN dbo.vw_transitionContacts AS t3 ON t3.id = c.verifiedBy 
-		AND t3.transitionSystemsID = ( SELECT id FROM dbo.transitionSystems 
-										WHERE systemName = db_name() ) ;
+SELECT  id              = id
+      , Salutation      = salutation
+      , JobTitle        = jobTitle
+      , Firstname       = firstname
+      , Initial         = initial
+      , Lastname        = lastname
+      , Suffix          = suffix
+      , Email           = email
+      , Login           = login
+      , Password        = password
+      , salt            = salt
+      , AccessID        = accessID
+      , Expires         = expires
+      , Hits            = hits
+      , LastLogin       = lastLogin
+      , Status          = status
+      , ModifiedBy      = modifiedBy
+      , DateModified    = dateModified
+      , datejoined      = datejoined
+      , membertype      = membertype
+      , photo           = photo
+      , resume          = resume
+      , thumb           = thumb
+      , PIN             = PIN
+      , reset           = reset
+      , mailsent        = mailsent
+      , sysmember       = sysmember
+      , maildate        = maildate
+      , updatesent      = updatesent
+      , updatenum       = updatenum
+      , nosend          = nosend
+      , hidden          = hidden
+      , security_level  = security_level
+      , review          = review
+      , Q1              = q1
+      , Q2              = q2
+      , Q3              = q3
+      , iAnswer         = iAnswer
+      , ipMac           = ipMac
+      , frequency_id    = frequency_id
+      , refer           = refer
+      , is_active       = is_active
+      , TimeZone        = timeZone
+      , usesDaylight    = usesDaylight
+      , TzOffset        = tzOffset
+      , iDefault_Quota  = iDefault_Quota
+      , iDoc_Usage      = iDoc_Usage
+      , assist_id       = assist_id
+      , layout          = layout
+      , bTOS            = bTOS
+      , bOnlineNow      = bOnlineNow
+      , uID             = uID
+      , iwkgrplayout    = iwkgrplayout
+      , sAboutMe        = sAboutMe
+      , folder_id       = folder_id
+      , signature       = signature
+      , dateAdded       = dateAdded
+      , addedBy         = addedBy
+      , bAuditLock      = bAuditLock
+      , bProfileUpdate  = bProfileUpdate
+      , bexpirereminder = bexpirereminder
+      , bPingSent       = bPingSent
+      , dPingDate       = dPingDate
+      , bVerified       = bVerified
+      , iVerifiedBy     = iVerifiedBy
+      , dVerifiedDate   = dVerifiedDate
+      , inetwork        = inetwork
+  FROM  Portal.mc_contact
+ WHERE  portalDB = DB_NAME() ;
+
