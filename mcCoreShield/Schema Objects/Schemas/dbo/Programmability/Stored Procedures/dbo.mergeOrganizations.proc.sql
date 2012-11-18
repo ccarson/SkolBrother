@@ -128,7 +128,7 @@ INNER JOIN  inputData AS i ON i.id = o.id
             INSERT  @TemplateOrgSystemsRecord
             SELECT  TOP 1 * FROM  #MergingOrganizations
              WHERE  systemID = @systemID
-          ORDER BY  systemID, mc_organizationID ;
+          ORDER BY  systemID, portalID ;
           
 --          Save off Portal.mc_organization.id from template record          
             SELECT  @TemplatePortalID = mc_organizationID
@@ -192,7 +192,7 @@ INNER JOIN  inputData AS i ON i.id = o.id
         END
         
 --  11) Build list of Portal.mc_organization.id values for merge
-        SELECT  @mergingPortalIDs = STUFF (( SELECT ',' + CAST( mc_organizationID AS VARCHAR(20) )
+        SELECT  @mergingPortalIDs = STUFF (( SELECT ',' + CAST( portalID AS VARCHAR(20) )
                                                FROM #MergingOrganizations
                                               WHERE systemID = @systemID
                                                 FOR XML PATH ('')),1,1,'') ;
