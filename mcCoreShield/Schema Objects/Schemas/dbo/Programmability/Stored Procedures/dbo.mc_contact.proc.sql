@@ -93,7 +93,7 @@ BEGIN
 		INTO #inserts
 		FROM @dataXML.nodes('i/data') AS i ( data ) ;	
 		
-		INSERT INTO dbo.Contacts ( 
+		INSERT INTO Core.Contacts ( 
 			id, Salutation, JobTitle, Firstname, Initial, Lastname, Suffix
 			, Email, Login, Password, salt, AccessID, Expires, Hits, LastLogin
 			, Status, ModifiedBy, DateModified, datejoined, membertype, photo
@@ -208,7 +208,7 @@ BEGIN
 		INTO #updates
 		FROM    @dataXML.nodes('u/data') AS u ( data ) ;	
 
-		UPDATE  dbo.Contacts SET
+		UPDATE  Core.Contacts SET
 			Salutation = u.Salutation
 			, JobTitle = u.JobTitle
 			, Firstname = u.Firstname
@@ -274,7 +274,7 @@ BEGIN
 			, verifiedBy = tc2.id
 			, dVerifiedDate = u.dVerifiedDate
 			, inetwork = u.inetwork
-		FROM dbo.Contacts AS c
+		FROM Core.Contacts AS c
 		INNER JOIN dbo.vw_transitionContacts AS tc1 ON c.id = tc1.ID
 			AND tc1.transitionSystemsID = @systemID 		
 		INNER JOIN #updates AS u ON u.id = tc1.ContactsID
@@ -313,10 +313,10 @@ BEGIN
             RETURN 16 ;
 		END							
 		
-        DELETE FROM dbo.Contacts
+        DELETE FROM Core.Contacts
 		WHERE NOT EXISTS ( 
 			SELECT * FROM dbo.transitionIdentities
-			WHERE dbo.Contacts.id = dbo.transitionIdentities.id ) ;
+			WHERE Core.Contacts.id = dbo.transitionIdentities.id ) ;
 	END
 		
 END

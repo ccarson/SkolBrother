@@ -13,6 +13,5 @@ GO
 ALTER TABLE dbo.ContactOrganizations
     ADD CONSTRAINT FK_ContactOrganizations_Contacts 
     FOREIGN KEY ( contactsID ) 
-    REFERENCES dbo.Contacts ( id ) 
+    REFERENCES Core.Contacts ( id ) 
     ON DELETE NO ACTION ON UPDATE NO ACTION ;
-GO

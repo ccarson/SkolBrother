@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[Contacts] (
+﻿CREATE TABLE Core.Contacts (
     [id]              UNIQUEIDENTIFIER NOT NULL,
     [Salutation]      NVARCHAR (20)    NULL,
     [JobTitle]        NVARCHAR (255)   NULL,
