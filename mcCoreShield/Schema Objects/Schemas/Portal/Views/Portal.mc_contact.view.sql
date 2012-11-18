@@ -1,4 +1,4 @@
-﻿CREATE VIEW Portal.mc_contact 
+﻿CREATE VIEW Portal.mc_contact
 WITH SCHEMABINDING
 AS
 /*
@@ -72,13 +72,13 @@ AS
           , signature       = c.signature
           , dateAdded       = p1.createdOn
           , addedBy         = COALESCE( p2.portalID,0 )
-          , bAuditLock      = c.bAuditLock           
+          , bAuditLock      = c.bAuditLock
           , bProfileUpdate  = c.bProfileUpdate
           , bexpirereminder = c.bexpirereminder
           , bPingSent       = c.bPingSent
           , dPingDate       = c.dPingDate
           , bVerified       = p1.isVerified
-          , iVerifiedBy     = COALESCE( p3.portalID,0 ) 
+          , iVerifiedBy     = COALESCE( p3.portalID,0 )
           , dVerifiedDate   = p1.verifiedOn
           , inetwork        = c.inetwork
           , portalDB        = s.systemDBName
@@ -86,7 +86,7 @@ AS
       FROM  Core.Contacts   AS c
 INNER JOIN  Portal.Contacts AS p1 ON p1.id = c.id
 INNER JOIN  dbo.Systems     AS s  ON  s.id = p1.systemID
- LEFT JOIN  Portal.Contacts AS p2 ON p2.id = p1.createdBy 
+ LEFT JOIN  Portal.Contacts AS p2 ON p2.id = p1.createdBy
             AND p2.systemID = s.id
  LEFT JOIN  Portal.Contacts AS p3 ON p3.id = p1.verifiedBy
-            AND p3.systemID = s.id ; 
+            AND p3.systemID = s.id ;
