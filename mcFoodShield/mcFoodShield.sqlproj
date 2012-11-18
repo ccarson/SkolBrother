@@ -6417,7 +6417,7 @@
     <Build Include="Schema Objects\Schemas\dbo\Views\Triggers\dbo.mc_contact_orgroles.mc_contact_orgroles_trigger.trigger.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Views\Triggers\dbo.mc_contact.process_mc_contact.trigger.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Views\Triggers\dbo.mc_contact.trigger.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Views\Triggers\dbo.mc_contact_addresses.process_mc_contact_addresses.trigger.sql">
@@ -7834,6 +7834,9 @@
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.mc_contact.synonym.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.process_mc_contact.synonym.sql">
       <SubType>Code</SubType>
     </Build>
   </ItemGroup>

@@ -27,8 +27,7 @@ BEGIN
           , @systemDBName   AS NVARCHAR(50) = DB_NAME()
           , @operation      AS NVARCHAR(50)
           , @recordsIN      AS INT
-          , @errorMessage   AS NVARCHAR(MAX) 
-          , @unknownUser    AS UNIQUEIDENTIFIER = N'00000000-0000-0000-0000-000000000001' 
+          , @errorMessage   AS NVARCHAR(MAX) ;
 
     SELECT  @systemID = id
       FROM  dbo.transitionSystems
@@ -50,7 +49,7 @@ BEGIN
                              , Hits             INT
                              , LastLogin        DATETIME2 (0)
                              , Status           NVARCHAR (20)
-                             , ModifiedBy       NVARCHAR (50)
+                             , ModifiedBy       INT
                              , DateModified     DATETIME2 (0)
                              , datejoined       DATETIME2 (0)
                              , membertype       INT
@@ -102,31 +101,22 @@ BEGIN
                              , dVerifiedDate    DATETIME2 (7)
                              , inetwork         INT ) ;
 
-    IF  EXISTS ( SELECT 1 FROM inserted )
-        IF  EXISTS ( SELECT 1 FROM deleted )
-            SELECT  @operation = N'UPDATE' ;
-        ELSE
-            SELECT  @operation = N'INSERT' ;
-    ELSE
-        SELECT  @operation = N'DELETE' ;
-        
     INSERT #mc_contact
-    SELECT * FROM deleted  WHERE @operation = 'DELETE'
+    SELECT * FROM inserted i 
         UNION ALL
-    SELECT * FROM inserted WHERE @operation <> 'DELETE'  ;
+    SELECT * FROM deleted d WHERE NOT EXISTS ( SELECT 1 FROM inserted i WHERE i.id = d.id ) ; 
     SELECT  @recordsIN = @@ROWCOUNT ;
 
-    ALTER TABLE #mc_contact ADD 
-        contactID   UNIQUEIDENTIFIER DEFAULT NEWSEQUENTIALID()  WITH VALUES 
-      , createdID   UNIQUEIDENTIFIER DEFAULT @unknownUser()     WITH VALUES 
-      , updatedID   UNIQUEIDENTIFIER DEFAULT @unknownUser()     WITH VALUES 
-      , verifiedID  UNIQUEIDENTIFIER DEFAULT @unknownUser()     WITH VALUES ; 
+    IF  EXISTS ( SELECT 1 FROM inserted ) 
+        EXECUTE @rc = Portal.mc_contactMerge @systemDBName
+                                           , @recordsIN
+                                           , @errorMessage OUTPUT ;
+    ELSE
+        EXECUTE @rc = Portal.mc_contactDelete @systemDBName
+                                            , @recordsIN
+                                            , @errorMessage OUTPUT ;
         
-    EXECUTE @rc = Portal.process_mc_contact @systemDBName
-                                          , @recordsIN
-                                          , @operation
-                                          , @errorMessage OUTPUT ;
-
     IF ( @rc > 0 )
         RAISERROR ( @errorMessage, 16, @rc ) ;
+        
 END

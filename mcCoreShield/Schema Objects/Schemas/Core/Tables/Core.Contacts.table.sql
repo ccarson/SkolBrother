@@ -15,7 +15,6 @@
   , hits            INT              NULL
   , lastLogin       DATETIME2 (0)    NULL
   , status          NVARCHAR (20)    NULL
-  , modifiedBy      NVARCHAR (50)    NULL
   , datejoined      DATETIME2 (0)    NULL
   , membertype      INT              NULL
   , photo           NVARCHAR (120)   NULL

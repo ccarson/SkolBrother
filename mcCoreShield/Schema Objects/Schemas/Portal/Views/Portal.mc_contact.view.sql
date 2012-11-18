@@ -14,7 +14,7 @@ AS
 
 ************************************************************************************************************************************
 */
-    SELECT  id              = p1.portalID
+    SELECT  id              = p.portalID
           , Salutation      = c.salutation
           , JobTitle        = c.jobTitle
           , Firstname       = c.firstname
@@ -30,7 +30,7 @@ AS
           , Hits            = c.hits
           , LastLogin       = c.lastLogin
           , Status          = c.status
-          , ModifiedBy      = c.modifiedBy
+          , ModifiedBy      = COALESCE( u.portalID, 0 )
           , DateModified    = p1.updatedOn
           , datejoined      = c.datejoined
           , membertype      = c.membertype
@@ -71,22 +71,21 @@ AS
           , folder_id       = c.folderID
           , signature       = c.signature
           , dateAdded       = p1.createdOn
-          , addedBy         = COALESCE( p2.portalID,0 )
+          , addedBy         = COALESCE( a.portalID,0 )
           , bAuditLock      = c.bAuditLock
           , bProfileUpdate  = c.bProfileUpdate
           , bexpirereminder = c.bexpirereminder
           , bPingSent       = c.bPingSent
           , dPingDate       = c.dPingDate
           , bVerified       = p1.isVerified
-          , iVerifiedBy     = COALESCE( p3.portalID,0 )
+          , iVerifiedBy     = COALESCE( v.portalID,0 )
           , dVerifiedDate   = p1.verifiedOn
           , inetwork        = c.inetwork
           , portalDB        = s.systemDBName
           , ContactID       = c.id
       FROM  Core.Contacts   AS c
-INNER JOIN  Portal.Contacts AS p1 ON p1.id = c.id
-INNER JOIN  dbo.Systems     AS s  ON  s.id = p1.systemID
- LEFT JOIN  Portal.Contacts AS p2 ON p2.id = p1.createdBy
-            AND p2.systemID = s.id
- LEFT JOIN  Portal.Contacts AS p3 ON p3.id = p1.verifiedBy
-            AND p3.systemID = s.id ;
+INNER JOIN  Portal.Contacts AS p ON p.id = c.id
+INNER JOIN  dbo.Systems     AS s ON s.id = p.systemID
+ LEFT JOIN  Portal.Contacts AS a ON a.id = p.createdBy  AND a.systemID = s.id
+ LEFT JOIN  Portal.Contacts AS u ON u.id = p.updatedBy  AND u.systemID = s.id
+ LEFT JOIN  Portal.Contacts AS v ON v.id = p.verifiedBy AND v.systemID = s.id ;
