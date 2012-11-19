@@ -1,5 +1,4 @@
 ﻿CREATE VIEW Portal.mc_organization
-WITH SCHEMABINDING
 AS
 /*
 ************************************************************************************************************************************
@@ -26,16 +25,13 @@ AS
           , is_demo         = c.isDemo
           , temp            = c.isTemp
           , date_added      = p.createdOn
-          , added_by        = ISNULL( x.ContactsID, 0 )
+          , added_by        = ISNULL( a.portalID, 0 )
           , date_updated    = p.updatedOn
-          , updated_by      = ISNULL( y.ContactsID, 0 )
+          , updated_by      = ISNULL( u.portalID, 0 )
           , portalDB        = s.systemDBName
           , OrganizationID  = c.id
-      FROM  Core.Organizations        AS c
-INNER JOIN  Portal.Organizations      AS p ON  p.id = c.id
-INNER JOIN  dbo.Systems               AS s ON  s.id = p.systemID
- LEFT JOIN  dbo.vw_transitionContacts AS x
-        ON  x.id = p.createdBy AND x.transitionSystemsID = s.ID
- LEFT JOIN  dbo.vw_transitionContacts AS y
-        ON  y.id = p.updatedBy AND y.transitionSystemsID = s.ID ;
-
+      FROM  Core.Organizations      AS c
+INNER JOIN  Portal.Organizations    AS p ON  p.id = c.id
+INNER JOIN  dbo.Systems             AS s ON  s.id = p.systemID
+ LEFT JOIN  Portal.Contacts         AS a ON  a.id = c.createdBy AND a.systemID = s.id
+ LEFT JOIN  Portal.Contacts         AS u ON  u.id = c.updatedBy AND u.systemID = s.id ;
