@@ -1,9 +1,9 @@
-﻿ALTER TABLE dbo.ContactAddresses
+﻿ALTER TABLE Core.ContactAddresses
     ADD CONSTRAINT PK_ContactAddresses
     PRIMARY KEY CLUSTERED ( id ASC ) ;
 GO
 
-ALTER TABLE dbo.ContactAddresses
+ALTER TABLE Core.ContactAddresses
     ADD CONSTRAINT FK_ContactAddresses_Contacts 
     FOREIGN KEY ( contactsID ) 
     REFERENCES Core.Contacts ( id ) 
