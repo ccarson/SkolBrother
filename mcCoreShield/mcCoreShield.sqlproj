@@ -60,11 +60,11 @@
     <DefaultFilegroup>PRIMARY</DefaultFilegroup>
     <EnableFullTextSearch>True</EnableFullTextSearch>
     <IsBrokerPriorityHonored>False</IsBrokerPriorityHonored>
-    <IsChangeTrackingAutoCleanupOn>True</IsChangeTrackingAutoCleanupOn>
+    <IsChangeTrackingAutoCleanupOn>False</IsChangeTrackingAutoCleanupOn>
     <IsChangeTrackingOn>False</IsChangeTrackingOn>
     <IsEncryptionOn>False</IsEncryptionOn>
     <NumericRoundAbort>False</NumericRoundAbort>
-    <PageVerify>NONE</PageVerify>
+    <PageVerify>CHECKSUM</PageVerify>
     <Parameterization>SIMPLE</Parameterization>
     <QuotedIdentifier>True</QuotedIdentifier>
     <ReadCommittedSnapshot>False</ReadCommittedSnapshot>

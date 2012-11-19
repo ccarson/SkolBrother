@@ -10,7 +10,7 @@
     <DeployScriptFileName>mcFoodShield.sql</DeployScriptFileName>
     <ProfileVersionNumber>1</ProfileVersionNumber>
     <TargetDatabaseName>mcFoodShield</TargetDatabaseName>
-    <TargetConnectionString>Data Source=CA-UNUA\SQLEXPRESS;Integrated Security=True;Pooling=False</TargetConnectionString>
+    <TargetConnectionString>Data Source=CA-UNUA;Integrated Security=True;Pooling=False</TargetConnectionString>
     <ScriptDatabaseOptions>True</ScriptDatabaseOptions>
   </PropertyGroup>
 </Project>
