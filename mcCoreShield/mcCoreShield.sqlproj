@@ -589,9 +589,6 @@
     <Build Include="Schema Objects\Schemas\dbo\Views\dbo.vw_transitionContactSMEProfiles.view.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Views\dbo.vw_transitionContacts.view.sql">
-      <SubType>Code</SubType>
-    </Build>
     <Build Include="Schema Objects\Schemas\dbo\Views\dbo.vw_transitionContactPhones.view.sql">
       <SubType>Code</SubType>
     </Build>
