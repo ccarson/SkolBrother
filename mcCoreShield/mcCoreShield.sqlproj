@@ -607,9 +607,6 @@
     <Build Include="Schema Objects\Schemas\dbo\Views\dbo.vw_transitionContactEmails.view.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Views\dbo.vw_transitionContactAddresses.view.sql">
-      <SubType>Code</SubType>
-    </Build>
     <Build Include="Schema Objects\Schemas\dbo\Views\dbo.vw_transitionRolesRoleCategories.view.sql">
       <SubType>Code</SubType>
     </Build>
