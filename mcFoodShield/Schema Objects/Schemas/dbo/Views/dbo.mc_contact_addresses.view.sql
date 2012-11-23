@@ -1,11 +1,34 @@
-﻿CREATE VIEW dbo.mc_contact_addresses AS SELECT t.ContactAddressesID AS id, a.add_type, a.address1
-				, a.address2, a.address3, a.city
-				, a.state, a.zip, a.country
-				, tc.contactsID AS user_id, a.defaultaddress, a.name, a.createdDate
-			FROM dbo.ContactAddresses AS a
-			INNER JOIN dbo.vw_transitionContactAddresses AS t ON a.id = t.id
-				AND t.transitionSystemsID = ( SELECT id FROM dbo.transitionSystems 
-												WHERE systemName = db_name() )	 
-			INNER JOIN dbo.vw_transitionContacts AS tc ON a.ContactsID = tc.id
-				AND tc.transitionSystemsID = ( SELECT id FROM dbo.transitionSystems 
-												WHERE systemName = db_name() )
+﻿CREATE VIEW dbo.mc_contact_addresses
+AS
+/*
+************************************************************************************************************************************
+
+       View:    dbo.mc_contact_addresses
+     Author:    Chris Carson
+    Purpose:    Portal view of core Portal.mc_contact_addresses
+
+    revisor    date            description
+    ---------  -----------     ----------------------------
+    ccarson    ###DATE###      Created
+
+************************************************************************************************************************************
+*/
+
+    SELECT  id                  = v.id
+          , add_type            = v.add_type
+          , address1            = v.address1
+          , address2            = v.address2
+          , address3            = v.address3
+          , city                = v.city
+          , state               = v.state
+          , zip                 = v.zip
+          , country             = v.country
+          , user_id             = v.user_id
+          , defaultaddress      = v.defaultaddress
+          , name                = v.name
+          , createdDate         = v.createdDate
+
+      FROM  Portal.mc_contact_addresses AS v
+     WHERE  v.portalDB = DB_NAME() ;
+
+

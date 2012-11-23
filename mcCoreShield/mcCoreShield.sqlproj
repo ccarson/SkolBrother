@@ -10,6 +10,8 @@
     <PostConversionAddToScc>
     </PostConversionAddToScc>
     <TargetDatabaseSet>True</TargetDatabaseSet>
+    <GenerateSqlClrSymbols>True</GenerateSqlClrSymbols>
+    <GenerateSqlClrDdl>True</GenerateSqlClrDdl>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -35,7 +37,7 @@
     <GenerateDatabaseFile>False</GenerateDatabaseFile>
     <GenerateCreateScript>True</GenerateCreateScript>
     <SqlServerVerification>True</SqlServerVerification>
-    <TargetLanguage>CS</TargetLanguage>
+    <TargetLanguage>VB</TargetLanguage>
     <AllowSnapshotIsolation>False</AllowSnapshotIsolation>
     <AnsiNullDefault>True</AnsiNullDefault>
     <AnsiNulls>True</AnsiNulls>
@@ -78,12 +80,13 @@
     <VardecimalStorageFormatOn>True</VardecimalStorageFormatOn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <OutputPath>.\sql\release\</OutputPath>
+    <OutputPath>sql\debug\</OutputPath>
     <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
     <TargetDatabase>
     </TargetDatabase>
     <TreatTSqlWarningsAsErrors>False</TreatTSqlWarningsAsErrors>
     <SuppressTSqlWarnings />
+    <SqlCodeAnalysisRules>-Microsoft.Rules.Data.SR0001;-Microsoft.Rules.Data.SR0014;-Microsoft.Rules.Data.SR0008;-Microsoft.Rules.Data.SR0010;-Microsoft.Rules.Data.SR0013;-Microsoft.Rules.Data.SR0009;-Microsoft.Rules.Data.SR0012;-Microsoft.Rules.Data.SR0011;-Microsoft.Rules.Data.SR0016;-Microsoft.Rules.Data.SR0015;-Microsoft.Rules.Data.SR0005;-Microsoft.Rules.Data.SR0006;-Microsoft.Rules.Data.SR0004;-Microsoft.Rules.Data.SR0007</SqlCodeAnalysisRules>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>.\sql\debug\</OutputPath>
@@ -321,9 +324,6 @@
     <Build Include="Schema Objects\Schemas\dbo\Tables\Indexes\dbo.ContactEmails.ix_ContactEmails_ContactsID.index.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Indexes\dbo.ContactAddresses.IX_ContactAddresses.index.sql">
-      <SubType>Code</SubType>
-    </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Indexes\dbo.OrgDepartments.IX_OrgDepartments.index.sql">
       <SubType>Code</SubType>
     </Build>
@@ -545,15 +545,6 @@
     <Build Include="Schema Objects\Schemas\dbo\Tables\Statistics\dbo.ContactEmails._dta_stat_90951896_1_2_3.statistic.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Statistics\dbo.ContactAddresses._dta_stat_2142435202_2_1.statistic.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Statistics\dbo.ContactAddresses._dta_stat_2142435202_8_1_2.statistic.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Statistics\dbo.ContactAddresses._dta_stat_2142435202_8_2.statistic.sql">
-      <SubType>Code</SubType>
-    </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Statistics\dbo.transitionIdentities._dta_stat_1884338273_1_3_4.statistic.sql">
       <SubType>Code</SubType>
     </Build>
@@ -664,9 +655,6 @@
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\dbo.ContactEmails.table.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\dbo.ContactAddresses.table.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\dbo.__BuildMaster_DbSchemaChanges.table.sql">
@@ -840,9 +828,6 @@
     <Build Include="Schema Objects\Schemas\Core\Tables\Defaults\Core.Contacts.defaults.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\dbo.ContactAddresses.keys.sql">
-      <SubType>Code</SubType>
-    </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\dbo.ContactEmails.keys.sql">
       <SubType>Code</SubType>
     </Build>
@@ -864,6 +849,30 @@
     <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.mc_contactDelete.proc.sql">
       <SubType>Code</SubType>
       <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\Core\Tables\Core.ContactAddresses.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\Portal\Tables\Portal.ContactAddresses.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\Core\Tables\Statistics\Core.ContactAddresses.statistics.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\Core\Tables\Indexes\Core.ContactAddresses.indexes.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\Core\Tables\Keys\Core.ContactAddresses.keys.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\Portal\Tables\Keys\Portal.ContactAddresses.keys.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\Portal\Tables\Indexes\Portal.ContactAddresses.indexes.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\Portal\Views\Portal.mc_contact_addresses.view.sql">
+      <SubType>Code</SubType>
     </Build>
   </ItemGroup>
   <ItemGroup>
