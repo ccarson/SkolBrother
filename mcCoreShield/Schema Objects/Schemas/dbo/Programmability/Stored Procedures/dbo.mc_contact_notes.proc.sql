@@ -44,10 +44,10 @@ BEGIN
 			l.newContactNotesID, tc1.id, notes, tc2.id, dateAdded, type_id
 		FROM #inserts AS i
 		INNER JOIN #legacyIDs AS l ON i.legacyID = l.legacyID
-		INNER JOIN dbo.vw_transitionContacts AS tc1	ON i.user_id = tc1.contactsID
-			AND tc1.transitionSystemsID = @systemID
-		INNER JOIN dbo.vw_transitionContacts AS tc2 ON i.admin_id = tc2.contactsID
-			AND tc2.transitionSystemsID = @systemID;
+		INNER JOIN Portal.Contacts AS tc1	ON i.user_id = tc1.portalID
+			AND tc1.systemID = @systemID
+		INNER JOIN Portal.Contacts AS tc2 ON i.admin_id = tc2.portalID
+			AND tc2.systemID = @systemID;
 
 		IF @@ROWCOUNT <> @recordsIN
 		BEGIN
@@ -86,10 +86,10 @@ BEGIN
 			AND tn.transitionSystemsID = @systemID
 		INNER JOIN dbo.ContactNotes as cn ON cn.id = tn.id
 			AND tn.transitionSystemsID = @systemID
-		INNER JOIN dbo.vw_transitionContacts AS tc1 ON u.user_id = tc1.contactsID 
-			AND tc1.transitionSystemsID = @systemID
-		INNER JOIN dbo.vw_transitionContacts AS tc2 ON u.admin_id = tc2.contactsID 
-			AND tc2.transitionSystemsID = @systemID;
+		INNER JOIN Portal.Contacts AS tc1 ON u.user_id = tc1.portalID 
+			AND tc1.systemID = @systemID
+		INNER JOIN Portal.Contacts AS tc2 ON u.admin_id = tc2.portalID
+			AND tc2.systemID = @systemID;
 			
 		IF @@ROWCOUNT <> @recordsIN
 		BEGIN

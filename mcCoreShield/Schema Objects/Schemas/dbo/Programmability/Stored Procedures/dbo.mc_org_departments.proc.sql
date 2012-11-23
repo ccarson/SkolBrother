@@ -63,10 +63,10 @@ BEGIN
 			ol.transitionSystemsID = @systemID
 		LEFT JOIN dbo.vw_transitionOrgDepartments AS d ON #inserts.parent_dept_id = d.OrgDepartmentsID AND
 			d.transitionSystemsID = @SystemID
-		LEFT JOIN dbo.vw_transitionContacts AS tc on #inserts.added_by = tc.ContactsID AND
-			tc.transitionSystemsID = @SystemID
-		LEFT JOIN dbo.vw_transitionContacts AS tc2 on #inserts.updated_by = tc2.ContactsID AND
-			tc2.transitionSystemsID = @SystemID;
+		LEFT JOIN Portal.Contacts AS tc on #inserts.added_by = tc.portalID AND
+			tc.systemID = @SystemID
+		LEFT JOIN Portal.Contacts AS tc2 on #inserts.updated_by = tc2.portalID AND
+			tc2.systemID = @SystemID;
 			
 		IF @@ROWCOUNT <> @recordsIN
 		BEGIN
@@ -119,8 +119,8 @@ BEGIN
 			AND o.transitionSystemsID = @systemID
 		INNER JOIN dbo.vw_transitionOrgLocations AS l ON u.location_id = l.orgLocationsID 
 			AND l.transitionSystemsID = @systemID
-		LEFT JOIN dbo.vw_transitionContacts AS c on u.updated_by = c.ContactsID 
-			AND c.transitionSystemsID = @SystemID
+		LEFT JOIN Portal.Contacts AS c on u.updated_by = c.portalID 
+			AND c.systemID = @SystemID
 		LEFT JOIN dbo.vw_transitionOrgDepartments AS d2 ON u.parent_dept_id = d2.OrgDepartmentsID 
 			AND d2.transitionSystemsID = @SystemID;			
 			

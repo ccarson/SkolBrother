@@ -49,8 +49,8 @@ BEGIN
 			, i.active, i.epublic, i.alert, i.is_emergency
 		FROM #inserts AS i
 		INNER JOIN #legacyIDs AS l ON i.legacyID = l.legacyID
-		INNER JOIN dbo.vw_transitionContacts AS tc ON i.user_id = tc.contactsID 
-			AND tc.transitionSystemsID = @systemID;
+		INNER JOIN Portal.Contacts AS tc ON i.user_id = tc.portalID 
+			AND tc.systemID = @systemID;
 
 		IF @@ROWCOUNT <> @recordsIN
 		BEGIN
@@ -95,8 +95,8 @@ BEGIN
 			AND te.transitionSystemsID = @systemID
 		INNER JOIN dbo.ContactEmails AS e ON te.id = e.id
 			AND te.transitionSystemsID = @systemID
-		INNER JOIN dbo.vw_transitionContacts AS tc ON u.user_id = tc.ContactsID 
-			AND tc.transitionSystemsID = @systemID;
+		INNER JOIN Portal.Contacts AS tc ON u.user_id = tc.portalID 
+			AND tc.systemID = @systemID;
 
 		IF @@ROWCOUNT <> @recordsIN
 		BEGIN

@@ -21,7 +21,7 @@ Function Arguments:
 */
 RETURN
 
-    SELECT  mc_contactID = ISNULL(ContactsID, 0)
-      FROM  dbo.vw_transitionContacts
-     WHERE  id = @id AND transitionSystemsID = @systemID ;
+SELECT  mc_contactID = ISNULL(portalID, 0)
+  FROM  Portal.Contacts
+ WHERE  id = @id AND systemID = @systemID ;
 

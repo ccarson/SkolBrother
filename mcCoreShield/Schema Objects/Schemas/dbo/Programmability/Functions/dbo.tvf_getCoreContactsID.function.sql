@@ -4,7 +4,7 @@ RETURNS TABLE
 AS
 /*
 ************************************************************************************************************************************
-            
+
    Function:    dbo.tvf_getCoreContactsID
      Author:    Chris Carson
     Purpose:    given a legacy dbo.mc_contact.id and system id, returns the coreSHIELD.dbo.Contacts.id
@@ -24,8 +24,8 @@ Function Arguments:
 */
 RETURN
 
-    SELECT  contactsID = id
-          , systemID   = transitionSystemsID
-      FROM  dbo.vw_transitionContacts
-     WHERE  ContactsID            = ISNULL( @mc_contactID, ContactsID )  
-       AND  transitionSystemsID   = ISNULL( @systemID, transitionSystemsID ) ;
+SELECT  contactsID = id
+      , systemID   = systemID
+  FROM  Portal.Contacts
+ WHERE  portalID    = ISNULL( @mc_contactID, portalID )
+   AND  systemID    = ISNULL( @systemID, systemID ) ;

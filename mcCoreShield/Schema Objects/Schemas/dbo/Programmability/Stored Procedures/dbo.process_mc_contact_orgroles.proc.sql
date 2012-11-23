@@ -95,12 +95,12 @@ IF  @operation = 'INSERT'
             ON  r.RolesID = i.role_id AND r.transitionSystemsID = @systemID
     INNER JOIN  dbo.vw_transitionOrganizations AS o
             ON  o.OrganizationsID =  i.org_id AND o.transitionSystemsID = @systemID
-    INNER JOIN  dbo.vw_transitionContacts AS c1
-            ON  c1.ContactsID = i.user_id AND c1.transitionSystemsID = @systemID
-     LEFT JOIN  dbo.vw_transitionContacts AS c2
-            ON  c2.ContactsID = i.added_by AND c2.transitionSystemsID = @systemID
-     LEFT JOIN  dbo.vw_transitionContacts AS c3
-            ON  c3.ContactsID = i.modified_by AND c3.transitionSystemsID = @systemID
+    INNER JOIN  Portal.Contacts AS c1
+            ON  c1.portalID = i.user_id AND c1.systemID = @systemID
+     LEFT JOIN  Portal.Contacts AS c2
+            ON  c2.portalID = i.added_by AND c2.systemID= @systemID
+     LEFT JOIN  Portal.Contacts AS c3
+            ON  c3.portalID = i.modified_by AND c3.systemID = @systemID
      LEFT JOIN  dbo.vw_transitionOrgDepartments d ON d.orgDepartmentsID = i.dept_id
                 AND d.transitionSystemsID = @systemID ;
         SELECT  @rows = @@ROWCOUNT ;
@@ -175,16 +175,16 @@ IF @operation = 'UPDATE'
             ON  t.id = cor.id AND t.transitionSystemsID = @systemID
     INNER JOIN  #updates AS u
             ON  u.id = t.ContactOrgRolesID
-    INNER JOIN  dbo.vw_transitionContacts AS c1
-            ON  c1.contactsID = u.user_id AND c1.transitionSystemsID = @systemID
+    INNER JOIN  Portal.Contacts AS c1
+            ON  c1.portalID = u.user_id AND c1.systemID = @systemID
     INNER JOIN  dbo.vw_transitionRoles AS r
             ON  r.RolesID = u.role_id AND r.transitionSystemsID = @systemID
     INNER JOIN  dbo.vw_transitionOrganizations AS o
             ON  o.OrganizationsID = u.org_id AND o.transitionSystemsID = @systemID
-     LEFT JOIN  dbo.vw_transitionContacts AS c2
-            ON  c2.contactsID = u.added_by AND c2.transitionSystemsID = @systemID
-     LEFT JOIN  dbo.vw_transitionContacts AS c3
-            ON  c3.contactsID = u.modified_by AND c3.transitionSystemsID = @systemID
+     LEFT JOIN  Portal.Contacts AS c2
+            ON  c2.portalID = u.added_by AND c2.systemID = @systemID
+     LEFT JOIN  Portal.Contacts AS c3
+            ON  c3.portalID = u.modified_by AND c3.systemID = @systemID
      LEFT JOIN  dbo.vw_transitionOrgDepartments d
             ON  d.orgDepartmentsID = u.dept_id AND d.transitionSystemsID = @systemID ;
         SELECT  @rows = @@ROWCOUNT ;

@@ -42,10 +42,10 @@ BEGIN
 			l.newContactVerificationsID, c1.id, c2.id, verified_date
 		FROM #inserts
 		INNER JOIN #legacyIDs AS l ON #inserts.legacyID = l.legacyID
-		INNER JOIN dbo.vw_transitionContacts AS c1 ON #inserts.user_id = c1.contactsID 
-			AND c1.transitionSystemsID = @systemID
-		INNER JOIN dbo.vw_transitionContacts AS c2 ON #inserts.verified_by = c2.contactsID 
-			AND	c2.transitionSystemsID = @systemID;
+		INNER JOIN Portal.Contacts AS c1 ON #inserts.user_id = c1.portalID 
+			AND c1.systemID = @systemID
+		INNER JOIN Portal.Contacts AS c2 ON #inserts.verified_by = c2.portalID
+			AND	c2.systemID = @systemID;
 
 		IF @@ROWCOUNT <> @recordsIN
 		BEGIN
@@ -77,8 +77,8 @@ BEGIN
 			AND	v.transitionSystemsID = @systemID
 		INNER JOIN dbo.ContactVerifications AS cv ON v.id = cv.id
 			AND	v.transitionSystemsID = @systemID
-		INNER JOIN dbo.vw_transitionContacts AS c ON #updates.verified_by = c.contactsID 
-			AND	c.transitionSystemsID = @systemID;
+		INNER JOIN Portal.Contacts AS c ON #updates.verified_by = c.portalID 
+			AND	c.systemID = @systemID;
 
 		IF @@ROWCOUNT <> @recordsIN
 		BEGIN

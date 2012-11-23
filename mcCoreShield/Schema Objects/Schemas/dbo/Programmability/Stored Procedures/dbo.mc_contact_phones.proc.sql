@@ -50,8 +50,8 @@ BEGIN
 			, active, epublic, extension, alert, is_emergency
 		FROM #inserts as i
 		INNER JOIN #legacyIDs as l on i.legacyID = l.legacyID
-		INNER JOIN dbo.vw_transitionContacts AS c ON i.user_id = c.contactsID 
-			AND c.transitionSystemsID = @systemID;
+		INNER JOIN Portal.Contacts AS c ON i.user_id = c.portalID 
+			AND c.systemID = @systemID;
 
 		IF @@ROWCOUNT <> @recordsIN
 		BEGIN
@@ -97,8 +97,8 @@ BEGIN
 			AND p.transitionSystemsID = @systemID
 		INNER JOIN dbo.ContactPhones AS cp on p.id = cp.id 
 			AND p.transitionSystemsID = @systemID
-		INNER JOIN dbo.vw_transitionContacts AS c ON u.user_id = c.ContactsID 
-			AND c.transitionSystemsID = @systemID;
+		INNER JOIN Portal.Contacts AS c ON u.user_id = c.portalID 
+			AND c.systemID = @systemID;
 
 		IF @@ROWCOUNT <> @recordsIN
 		BEGIN

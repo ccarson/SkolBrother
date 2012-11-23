@@ -54,8 +54,8 @@ BEGIN
 			, date_added, date_updated
 		FROM #inserts AS i
 		INNER JOIN #legacyIDs AS l ON i.legacyID = l.legacyID		
-		INNER JOIN dbo.vw_transitionContacts AS c ON i.user_id = c.contactsID 
-			AND	c.transitionSystemsID = @systemID
+		INNER JOIN Portal.Contacts AS c ON i.user_id = c.portalID 
+			AND	c.systemID = @systemID
 		INNER JOIN dbo.vw_transitionOrganizations AS o ON i.org_id = o.organizationsID 
 			AND	o.transitionSystemsID = @systemID
 		INNER JOIN dbo.vw_transitionOrgLocations AS loc ON i.location_id = loc.orgLocationsID 
@@ -106,8 +106,8 @@ BEGIN
 			AND tco.transitionSystemsID = @systemID
 		INNER JOIN dbo.ContactOrganizations AS co ON tco.id = co.id
 			AND tco.transitionSystemsID = @systemID
-		INNER JOIN dbo.vw_transitionContacts AS c ON u.user_id = c.contactsID 
-			AND c.transitionSystemsID = @systemID
+		INNER JOIN Portal.Contacts AS c ON u.user_id = c.portalID 
+			AND c.systemID = @systemID
 		INNER JOIN dbo.vw_transitionOrganizations AS o ON u.org_id = o.organizationsID 
 			AND o.transitionSystemsID = @systemID
 		INNER JOIN dbo.vw_transitionOrgLocations AS l ON u.location_id = l.orgLocationsID 
