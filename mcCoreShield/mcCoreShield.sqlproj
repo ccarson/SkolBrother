@@ -879,6 +879,12 @@
       <SubType>Code</SubType>
       <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
     </Build>
+    <Build Include="Schema Objects\Schemas\Conversion\Tables\Conversion.convertingTables.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\Conversion\Tables\Keys\Conversion.convertingTables.keys.sql">
+      <SubType>Code</SubType>
+    </Build>
   </ItemGroup>
   <ItemGroup>
     <None Include="Debug.publish.xml" />
