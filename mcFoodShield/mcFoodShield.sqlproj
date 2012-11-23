@@ -7732,9 +7732,6 @@
     <Build Include="Schema Objects\Schemas\dbo\Synonyms\dbo.vw_transitionContacts.synonym.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Synonyms\dbo.ContactAddresses.synonym.sql">
-      <SubType>Code</SubType>
-    </Build>
     <Build Include="Schema Objects\Schemas\dbo\Synonyms\dbo.vw_transitionContactAddresses.synonym.sql">
       <SubType>Code</SubType>
     </Build>
