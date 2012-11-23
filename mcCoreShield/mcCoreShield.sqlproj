@@ -518,8 +518,9 @@
     <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.mc_contact_emails.proc.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.mc_contact_addresses.proc.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.mc_contact_addressesMerge.proc.sql">
       <SubType>Code</SubType>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.coreMeetingsReport.proc.sql">
       <SubType>Code</SubType>
@@ -873,6 +874,10 @@
     </Build>
     <Build Include="Schema Objects\Schemas\Portal\Views\Portal.mc_contact_addresses.view.sql">
       <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.mc_contact_addressesDelete.proc.sql">
+      <SubType>Code</SubType>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
     </Build>
   </ItemGroup>
   <ItemGroup>
