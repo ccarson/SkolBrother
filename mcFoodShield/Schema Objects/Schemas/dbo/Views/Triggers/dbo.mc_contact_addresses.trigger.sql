@@ -29,20 +29,16 @@ BEGIN
           , @recordsIN      AS INT
           , @errorMessage   AS NVARCHAR(MAX) ;
           
-    CREATE TABLE #mc_contact_addresses ( id                  INT
-                                       , add_type            INT
-                                       , address1            NVARCHAR (200)
-                                       , address2            NVARCHAR (200)
-                                       , address3            NVARCHAR (200)
-                                       , city                NVARCHAR (150)
-                                       , state               NVARCHAR (50)
-                                       , zip                 NVARCHAR (20)
-                                       , country             NVARCHAR (20)
-                                       , user_id             INT
-                                       , defaultAddress      NVARCHAR (35)
-                                       , name                NVARCHAR (100)
-                                       , createdDate         DATETIME2 (7) ) ;
-
+    CREATE TABLE #mc_contact_addresses ( id     INT ) ; 
+    
+    EXECUTE @rc = dbo.buildTriggerTable @tableName = 'mc_contact_addresses' ; 
+    
+    IF  ( @rc > 0 )
+    BEGIN
+        RAISERROR( 'buildTriggerTable returned non-zero error code', 16, @rc ) ;
+        RETURN ;
+    END
+    
     INSERT #mc_contact_addresses
     SELECT * FROM inserted i 
         UNION ALL
