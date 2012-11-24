@@ -6428,7 +6428,7 @@
     <Build Include="Schema Objects\Schemas\dbo\Views\Triggers\dbo.mc_contact_addresses.trigger.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Views\Triggers\dbo.mc_contact_emails.process_mc_contact_emails.trigger.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Views\Triggers\dbo.mc_contact_emails.trigger.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Views\Triggers\dbo.mc_contact_phones.process_mc_contact_phones.trigger.sql">
@@ -7845,6 +7845,15 @@
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.mc_contact_emails.synonym.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.buildTriggerTable.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.mc_contact_emailsDelete.synonym.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.mc_contact_emailsMerge.synonym.sql">
       <SubType>Code</SubType>
     </Build>
   </ItemGroup>
