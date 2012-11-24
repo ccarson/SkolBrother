@@ -897,6 +897,9 @@
     <Build Include="Schema Objects\Schemas\Core\Tables\Indexes\Core.ContactEmails.indexes.sql">
       <SubType>Code</SubType>
     </Build>
+    <Build Include="Schema Objects\Schemas\Portal\Views\Portal.mc_contact_emails.view.sql">
+      <SubType>Code</SubType>
+    </Build>
   </ItemGroup>
   <ItemGroup>
     <None Include="Debug.publish.xml" />

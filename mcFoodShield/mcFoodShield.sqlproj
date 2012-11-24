@@ -7844,6 +7844,9 @@
     <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.mc_contact_addressesMerge.synonym.sql">
       <SubType>Code</SubType>
     </Build>
+    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.mc_contact_emails.synonym.sql">
+      <SubType>Code</SubType>
+    </Build>
   </ItemGroup>
   <ItemGroup>
     <None Include="Debug.publish.xml" />
