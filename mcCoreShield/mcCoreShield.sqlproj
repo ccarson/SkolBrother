@@ -879,6 +879,24 @@
     <Build Include="Schema Objects\Schemas\Conversion\Tables\Keys\Conversion.convertingTables.keys.sql">
       <SubType>Code</SubType>
     </Build>
+    <Build Include="Schema Objects\Schemas\Core\Tables\Core.ContactEmails.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\Portal\Tables\Portal.ContactEmails.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\Portal\Tables\Keys\Portal.ContactEmails.keys.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\Portal\Tables\Indexes\Portal.ContactEmails.indexes.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\Core\Tables\Keys\Core.ContactEmails.keys.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\Core\Tables\Indexes\Core.ContactEmails.indexes.sql">
+      <SubType>Code</SubType>
+    </Build>
   </ItemGroup>
   <ItemGroup>
     <None Include="Debug.publish.xml" />
