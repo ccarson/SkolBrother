@@ -321,9 +321,6 @@
     <Build Include="Schema Objects\Schemas\dbo\Tables\Indexes\dbo.ContactOrganizations.ix_contactOrganizations_locations.index.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Indexes\dbo.ContactEmails.ix_ContactEmails_ContactsID.index.sql">
-      <SubType>Code</SubType>
-    </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Indexes\dbo.OrgDepartments.IX_OrgDepartments.index.sql">
       <SubType>Code</SubType>
     </Build>
@@ -407,9 +404,6 @@
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\dbo.smeTypes.PK__smeTypes__3213E83F43D61337.pkey.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\dbo.ContactSMEProfiles.PK_ContactsSMEProfiles.pkey.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\dbo.SystemsIPAddresses.PK_SystemsIPAddresses.pkey.sql">
@@ -808,12 +802,6 @@
     <Build Include="Schema Objects\Schemas\Core\Tables\Defaults\Core.Contacts.defaults.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\dbo.ContactEmails.keys.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\dbo.ContactVerifications.keys.sql" />
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\dbo.ContactPhones.keys.sql" />
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\dbo.ContactNotes.keys.sql" />
     <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\dbo.smeUsers.keys.sql">
       <SubType>Code</SubType>
     </Build>
@@ -915,6 +903,25 @@
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\Portal\Tables\Portal.ContactVerifications.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\Core\Tables\Keys\Core.ContactNotes.keys.sql" />
+    <Build Include="Schema Objects\Schemas\Core\Tables\Keys\Core.ContactPhones.keys.sql" />
+    <Build Include="Schema Objects\Schemas\Core\Tables\Keys\Core.ContactVerifications.keys.sql" />
+    <Build Include="Schema Objects\Schemas\Core\Tables\Keys\Core.ContactSMEProfiles.keys.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\Portal\Tables\Keys\Portal.ContactNotes.keys.sql" />
+    <Build Include="Schema Objects\Schemas\Portal\Tables\Keys\Portal.ContactPhones.keys.sql" />
+    <Build Include="Schema Objects\Schemas\Portal\Tables\Keys\Portal.ContactSMEProfiles.keys.sql" />
+    <Build Include="Schema Objects\Schemas\Portal\Tables\Keys\Portal.ContactVerifications.keys.sql" />
+    <Build Include="Schema Objects\Schemas\Portal\Tables\Keys\Portal.Contacts.keys.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\Portal\Tables\Indexes\Portal.ContactNotes.indexes.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\Portal\Tables\Indexes\Portal.ContactPhones.indexes.sql">
       <SubType>Code</SubType>
     </Build>
   </ItemGroup>

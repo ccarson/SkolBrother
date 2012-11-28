@@ -11,9 +11,7 @@ ALTER TABLE Portal.ContactAddresses
 GO
 
 ALTER TABLE Portal.ContactAddresses
-    ADD CONSTRAINT FK_ContactAddresses_CorePortal
+    ADD CONSTRAINT FK_ContactAddresses_Core
     FOREIGN KEY ( id )
     REFERENCES Core.ContactAddresses ( id )
     ON DELETE NO ACTION ON UPDATE NO ACTION ;
-
-
