@@ -1,10 +1,28 @@
-﻿--CREATE VIEW dbo.mc_contact_phones AS SELECT tp.ContactPhonesID AS id, p.phone, tc.contactsID AS user_id
---				, p.type_id, p.edefault, p.active
---				, p.epublic, p.extension, p.alert, p.is_emergency
---			FROM dbo.ContactPhones AS p
---			INNER JOIN dbo.vw_transitionContactPhones AS tp	ON tp.id = p.id
---				AND	tp.transitionSystemsID = ( SELECT id FROM dbo.transitionSystems 
---												WHERE systemName = db_name() )	
---			INNER JOIN dbo.vw_transitionContacts AS tc ON tc.id = p.ContactsID
---				AND	tc.transitionSystemsID = ( SELECT id FROM dbo.transitionSystems 
---												WHERE systemName = db_name() )
+﻿CREATE VIEW dbo.mc_contact_phones
+AS
+/*
+************************************************************************************************************************************
+
+       View:    dbo.mc_contact_phones
+     Author:    Chris Carson
+    Purpose:    Portal view of Core.ContactEmails joined on Portal.ContactEmails
+
+    revisor    date            description
+    ---------  -----------     ----------------------------
+    ccarson    ###DATE###      Created
+
+************************************************************************************************************************************
+*/
+
+    SELECT  id              = v.id
+          , phone           = v.email
+          , user_id         = v.user_id
+          , type_id         = v.type_id
+          , edefault        = v.edefault
+          , active          = v.active
+          , epublic         = v.epublic
+          , extension       = v.extension
+          , alert           = v.alert
+          , is_emergency    = v.is_emergency
+      FROM  Portal.mc_contact_phones AS v
+     WHERE  v.portalDB = DB_NAME() ;

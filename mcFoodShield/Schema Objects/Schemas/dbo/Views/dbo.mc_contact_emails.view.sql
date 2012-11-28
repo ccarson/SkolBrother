@@ -23,6 +23,5 @@ AS
           , epublic         = v.epublic
           , alert           = v.alert
           , is_emergency    = v.is_emergency
-
       FROM  Portal.mc_contact_emails AS v
      WHERE  v.portalDB = DB_NAME() ;
