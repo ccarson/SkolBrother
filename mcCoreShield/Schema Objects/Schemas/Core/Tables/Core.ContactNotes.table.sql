@@ -1,9 +1,10 @@
-﻿CREATE TABLE [dbo].[ContactNotes] (
-    [id]         UNIQUEIDENTIFIER NOT NULL,
-    [contactsID] UNIQUEIDENTIFIER NOT NULL,
-    [notes]      NVARCHAR (500)   NULL,
-    [adminID]    UNIQUEIDENTIFIER NULL,
-    [dateAdded]  DATETIME2 (0)    NULL,
-    [type_id]    INT              NULL
-);
-
+﻿CREATE TABLE Core.ContactNotes (
+    id          UNIQUEIDENTIFIER NOT NULL
+  , contactsID  UNIQUEIDENTIFIER NOT NULL
+  , typeID      INT              NULL
+  , adminID     UNIQUEIDENTIFIER NULL
+  , notes       NVARCHAR (500)   NULL
+  , createdOn   DATETIME2 (7)    NULL
+  , createdBy   UNIQUEIDENTIFIER NULL
+  , updatedOn   DATETIME2 (0)    NULL
+  , updatedBy   UNIQUEIDENTIFIER NULL ) ;

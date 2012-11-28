@@ -15,4 +15,3 @@
   , createdBy      UNIQUEIDENTIFIER NULL 
   , updatedOn      DATETIME2 (7)    NULL 
   , updatedBy      UNIQUEIDENTIFIER NULL ) ;
-

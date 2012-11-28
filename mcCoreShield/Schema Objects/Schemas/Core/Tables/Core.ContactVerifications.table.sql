@@ -1,7 +1,9 @@
-﻿CREATE TABLE [dbo].[ContactVerifications] (
-    [id]            UNIQUEIDENTIFIER NOT NULL,
-    [contactsID]    UNIQUEIDENTIFIER NOT NULL,
-    [verified_by]   UNIQUEIDENTIFIER NULL,
-    [verified_date] DATETIME2 (0)    NULL
-);
-
+﻿CREATE TABLE Core.ContactVerifications (
+    id            UNIQUEIDENTIFIER NOT NULL
+  , contactsID    UNIQUEIDENTIFIER NOT NULL
+  , verifiedBy    UNIQUEIDENTIFIER NULL
+  , verifiedOn    DATETIME2 (7)    NULL
+  , createdOn     DATETIME2 (7)    NOT NULL
+  , createdBy     UNIQUEIDENTIFIER NOT NULL
+  , updatedOn     DATETIME2 (7)    NULL
+  , updatedBy     UNIQUEIDENTIFIER NULL ) ;

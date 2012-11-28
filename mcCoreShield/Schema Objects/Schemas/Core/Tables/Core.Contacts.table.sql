@@ -63,5 +63,3 @@
   , createdBy       UNIQUEIDENTIFIER NULL
   , updatedOn       DATETIME2 (0)    NULL
   , updatedBy       UNIQUEIDENTIFIER NULL ) ;
-
-  
