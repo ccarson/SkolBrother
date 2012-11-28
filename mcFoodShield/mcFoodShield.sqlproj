@@ -7849,6 +7849,12 @@
     </Build>
     <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.mc_contact_notes.synonym.sql" />
     <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.mc_contact_verification.synonym.sql" />
+    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.mc_contact_verificationDelete.synonym.sql" />
+    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.mc_contact_notesDelete.synonym.sql" />
+    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.mc_contact_phonesDelete.synonym.sql" />
+    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.mc_contact_verificationMerge.synonym.sql" />
+    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.mc_contact_phonesMerge.synonym.sql" />
+    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.mc_contact_notesMerge.synonym.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Debug.publish.xml" />

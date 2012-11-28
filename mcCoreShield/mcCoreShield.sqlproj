@@ -900,6 +900,30 @@
     <Build Include="Schema Objects\Schemas\Portal\Views\Portal.mc_contact_notes.view.sql">
       <SubType>Code</SubType>
     </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.mc_contact_notesDelete.proc.sql">
+      <SubType>Code</SubType>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.mc_contact_phonesDelete.proc.sql">
+      <SubType>Code</SubType>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.mc_contact_verificationDelete.proc.sql">
+      <SubType>Code</SubType>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.mc_contact_verificationMerge.proc.sql">
+      <SubType>Code</SubType>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.mc_contact_phonesMerge.proc.sql">
+      <SubType>Code</SubType>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.mc_contact_notesMerge.proc.sql">
+      <SubType>Code</SubType>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
   </ItemGroup>
   <ItemGroup>
     <None Include="Debug.publish.xml" />
