@@ -1,5 +1,5 @@
 ﻿CREATE TABLE Portal.Contacts (
-    id          UNIQUEIDENTIFIER NOT NULL
+  , id          UNIQUEIDENTIFIER NOT NULL
   , systemID    INT              NOT NULL
   , isVerified  BIT              NULL
   , verifiedBy  UNIQUEIDENTIFIER NULL
