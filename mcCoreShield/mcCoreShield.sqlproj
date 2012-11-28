@@ -876,18 +876,42 @@
     <Build Include="Schema Objects\Schemas\Portal\Views\Portal.mc_contact_notes.view.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.delete_mc_contact.proc.sql" />
-    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.delete_mc_contact_addresses.proc.sql" />
-    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.delete_mc_contact_emails.proc.sql" />
-    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.delete_mc_contact_notes.proc.sql" />
-    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.delete_mc_contact_phones.proc.sql" />
-    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.delete_mc_contact_verification.proc.sql" />
-    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.merge_mc_contact.proc.sql" />
-    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.merge_mc_contact_addresses.proc.sql" />
-    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.merge_mc_contact_emails.proc.sql" />
-    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.merge_mc_contact_notes.proc.sql" />
-    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.merge_mc_contact_phones.proc.sql" />
-    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.merge_mc_contact_verification.proc.sql" />
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.delete_mc_contact.proc.sql">
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.delete_mc_contact_addresses.proc.sql">
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.delete_mc_contact_emails.proc.sql">
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.delete_mc_contact_notes.proc.sql">
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.delete_mc_contact_phones.proc.sql">
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.delete_mc_contact_verification.proc.sql">
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.merge_mc_contact.proc.sql">
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.merge_mc_contact_addresses.proc.sql">
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.merge_mc_contact_emails.proc.sql">
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.merge_mc_contact_notes.proc.sql">
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.merge_mc_contact_phones.proc.sql">
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.merge_mc_contact_verification.proc.sql">
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
   </ItemGroup>
   <ItemGroup>
     <None Include="Debug.publish.xml" />

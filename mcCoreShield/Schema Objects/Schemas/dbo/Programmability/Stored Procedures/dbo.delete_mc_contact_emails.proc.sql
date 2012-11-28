@@ -1,11 +1,11 @@
-﻿CREATE PROCEDURE dbo.mc_contact_emailsDelete ( @systemDBName AS NVARCHAR (50)
-                                             , @recordsIN    AS INT
-                                             , @errorMessage AS NVARCHAR (MAX) OUTPUT )
+﻿CREATE PROCEDURE dbo.delete_mc_contact_emails ( @systemDBName AS NVARCHAR (50)
+                                              , @recordsIN    AS INT
+                                              , @errorMessage AS NVARCHAR (MAX) OUTPUT )
 AS
 /*
 ************************************************************************************************************************************
 
-  Procedure: dbo.mc_contact_emailsDelete
+  Procedure: dbo.delete_mc_contact_emails
      Author: Chris Carson
     Purpose: Processes data from portal view trigger for Core.ContactAddresses and Portal.ContactAddresses on core
 
@@ -34,7 +34,8 @@ BEGIN
 
 
 --  2)  Add contactEmailsID field to incoming data
-    ALTER TABLE #mc_contact_emails ADD contactEmailsID   UNIQUEIDENTIFIER NULL ;
+    ALTER TABLE #mc_contact_emails 
+        ADD contactEmailsID UNIQUEIDENTIFIER NULL ;
 
 
 --  3)  UPDATE contactEmailsID from existing Portal.ContactEmails.id

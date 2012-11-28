@@ -1,13 +1,13 @@
-﻿CREATE PROCEDURE dbo.mc_contact_notesDelete ( @systemDBName AS NVARCHAR (50)
-                                      , @recordsIN    AS INT
-                                      , @errorMessage AS NVARCHAR (MAX) OUTPUT )
+﻿CREATE PROCEDURE dbo.delete_mc_contact_notes ( @systemDBName AS NVARCHAR (50)
+                                             , @recordsIN    AS INT
+                                             , @errorMessage AS NVARCHAR (MAX) OUTPUT )
 AS
 /*
 ************************************************************************************************************************************
 
-  Procedure: dbo.mc_contactDelete
+  Procedure: dbo.delete_mc_contact_notes
      Author: Chris Carson
-    Purpose: Processes data from portal view trigger for Core.Contacts and Portal.Contacts on core
+    Purpose: Processes data from portal view trigger for Core.ContactNotes and Portal.ContactNotes on core
 
     revisor     date            description
     ---------   -----------     ----------------------------
@@ -15,51 +15,55 @@ AS
 
 
     Logic Summary:
-        1)  Add contactID field to incoming data
-        2)  UPDATE contactID from existing Portal.Contacts.id 
-        3)  DELETE Portal.Contacts
-        4)  DELETE Core.Contacts records when all Portal.Contacts records are deleted
+        1)  Determine systemID from incoming @systemDBName
+        2)  Add contactNotesID field to incoming data
+        3)  UPDATE contactNotesID from existing Portal.ContactNotes.id
+        4)  DELETE Portal.ContactNotes
+        5)  DELETE Core.ContactNotes records when all Portal.ContactNotes records are deleted
 
 ************************************************************************************************************************************
 */
 BEGIN
-
     SET NOCOUNT ON ;
 
-    DECLARE @updated            AS INT = 0
-          , @rows               AS INT = 0
-          , @contactInserts     AS INT = 0
-          , @contactUpdates     AS INT = 0
-          , @legacyID           AS INT = 0
-          , @inserted           AS INT = 0
-          , @deleted            AS INT = 0
-          , @systemID           AS INT = 0 
-          , @unknownUser    AS UNIQUEIDENTIFIER = N'00000000-0000-0000-0000-000000000001' ; 
-          
---  1)  Add contactID field to incoming data
-    ALTER TABLE #mc_contact ADD contactID   UNIQUEIDENTIFIER NULL ; 
-    
---  2)  UPDATE contactID from existing Portal.Contacts.id     
-    UPDATE  #mc_contact
-       SET  contactID = p.id 
-      FROM  #mc_contact     AS m
-INNER JOIN  Portal.Contacts AS p ON p.portalID = m.id AND p.systemID = @systemID ; 
+    DECLARE @systemID           AS INT = 0 ; 
 
 
---  3)  DELETE Portal.Contacts
-      WITH  records AS ( 
-            SELECT * FROM Portal.Contacts AS p 
-             WHERE EXISTS ( SELECT 1 FROM #mc_contact AS m WHERE m.contactID = p.id AND p.systemID = @systemID ) )
-    DELETE  records ; 
-    
+--  1)  Determine systemID from incoming @systemDBName
+    SELECT  @systemID = id FROM dbo.Systems WHERE systemDBName = @systemDBName ;
 
---  4)  DELETE Core.Contacts records when all Portal.Contacts records are deleted
-      WITH  records AS ( 
-            SELECT * FROM Core.Contacts AS c
-             WHERE EXISTS ( SELECT 1 FROM #mc_contact AS m WHERE m.contactID = c.id ) 
-               AND NOT EXISTS ( SELECT 1 FROM Portal.Contacts AS p WHERE p.id = c.id ) ) 
-    DELETE  records ; 
-    
+
+--  2)  Add contactNotesID field to incoming data
+    ALTER TABLE #mc_contact_notes 
+        ADD contactNotesID UNIQUEIDENTIFIER NULL ;
+
+
+--  3)  UPDATE contactNotesID from existing Portal.ContactNotes.id
+    UPDATE  #mc_contact_notes
+       SET  contactNotesID = p.id
+      FROM  #mc_contact_notes   AS m
+INNER JOIN  Portal.ContactNotes AS p ON p.portalID = m.id AND p.systemID = @systemID ;
+
+
+--  4)  DELETE Portal.ContactNotes
+      WITH  records AS (
+            SELECT  *
+              FROM  Portal.ContactNotes AS p
+             WHERE  EXISTS ( SELECT  1
+                               FROM  #mc_contact_notes AS m
+                              WHERE  m.contactNotesID = p.id AND p.systemID = @systemID ) )
+    DELETE  records ;
+
+
+--  5)  DELETE Core.ContactNotes records when all Portal.ContactNotes records are deleted
+      WITH  records AS (
+            SELECT * FROM Core.ContactNotes AS c
+             WHERE EXISTS ( SELECT  1
+                              FROM  #mc_contact_notes AS m
+                             WHERE  m.contactID = c.id )
+               AND NOT EXISTS ( SELECT  1
+                                  FROM  Portal.ContactNotes AS p
+                                 WHERE  p.id = c.id ) )
+    DELETE  records ;
+
 END
-
-

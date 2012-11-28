@@ -1,11 +1,11 @@
-﻿CREATE PROCEDURE dbo.mc_contact_addressesDelete ( @systemDBName AS NVARCHAR (50)
-                                                , @recordsIN    AS INT
-                                                , @errorMessage AS NVARCHAR (MAX) OUTPUT )
+﻿CREATE PROCEDURE dbo.delete_mc_contact_addresses ( @systemDBName AS NVARCHAR (50)
+                                                 , @recordsIN    AS INT
+                                                 , @errorMessage AS NVARCHAR (MAX) OUTPUT )
 AS
 /*
 ************************************************************************************************************************************
 
-  Procedure: dbo.mc_contact_addresssesDelete
+  Procedure: dbo.delete_mc_contact_addresses
      Author: Chris Carson
     Purpose: Processes data from portal view trigger for Core.ContactAddresses and Portal.ContactAddresses on core
 
@@ -34,17 +34,18 @@ BEGIN
 
 
 --  2)  Add contactAddressID field to incoming data
-    ALTER TABLE #mc_contact_addresses ADD contactAddressID   UNIQUEIDENTIFIER NULL ;
+    ALTER TABLE #mc_contact_addresses 
+        ADD contactAddressID UNIQUEIDENTIFIER NULL ;
 
 
 --  3)  UPDATE contactAddressID from existing Portal.ContactAddresses.id
-    UPDATE  #mc_contact
+    UPDATE  #mc_contact_addresses
        SET  contactAddressID = p.id
       FROM  #mc_contact_addresses   AS m
 INNER JOIN  Portal.ContactAddresses AS p ON p.portalID = m.id AND p.systemID = @systemID ;
 
 
---  4)  DELETE Portal.Contacts
+--  4)  DELETE Portal.ContactAddresses
       WITH  records AS (
             SELECT  *
               FROM  Portal.ContactAddresses AS p
@@ -54,7 +55,7 @@ INNER JOIN  Portal.ContactAddresses AS p ON p.portalID = m.id AND p.systemID = @
     DELETE  records ;
 
 
---  5)  DELETE Core.Contacts records when all Portal.Contacts records are deleted
+--  5)  DELETE Core.ContactAddresses records when all Portal.ContactAddresses records are deleted
       WITH  records AS (
             SELECT * FROM Core.ContactAddresses AS c
              WHERE EXISTS ( SELECT  1

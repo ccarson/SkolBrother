@@ -1,13 +1,13 @@
-﻿CREATE PROCEDURE dbo.mc_contactDelete ( @systemDBName AS NVARCHAR (50)
-                                      , @recordsIN    AS INT
-                                      , @errorMessage AS NVARCHAR (MAX) OUTPUT )
+﻿CREATE PROCEDURE dbo.delete_mc_contact ( @systemDBName AS NVARCHAR (50)
+                                       , @recordsIN    AS INT
+                                       , @errorMessage AS NVARCHAR (MAX) OUTPUT )
 AS
 /*
 ************************************************************************************************************************************
-
-  Procedure: dbo.mc_contactDelete
-     Author: Chris Carson
-    Purpose: Processes data from portal view trigger for Core.Contacts and Portal.Contacts on core
+            
+  Procedure:    dbo.delete_mc_contact
+     Author:    Chris Carson
+    Purpose:    deletes core Contact data
 
     revisor     date            description
     ---------   -----------     ----------------------------
@@ -15,45 +15,43 @@ AS
 
 
     Logic Summary:
-        1)  Add contactID field to incoming data
-        2)  UPDATE contactID from existing Portal.Contacts.id 
-        3)  DELETE Portal.Contacts
-        4)  DELETE Core.Contacts records when all Portal.Contacts records are deleted
+        1)  Determine systemID from incoming @systemDBName
+        2)  Add contactID field to incoming data
+        3)  UPDATE contactID from existing Portal.Contacts.id 
+        4)  DELETE Portal.Contacts
+        5)  DELETE Core.Contacts records when all Portal.Contacts records are deleted
 
 ************************************************************************************************************************************
 */
 BEGIN
-
     SET NOCOUNT ON ;
 
-    DECLARE @updated            AS INT = 0
-          , @rows               AS INT = 0
-          , @contactInserts     AS INT = 0
-          , @contactUpdates     AS INT = 0
-          , @legacyID           AS INT = 0
-          , @inserted           AS INT = 0
-          , @deleted            AS INT = 0
-          , @systemID           AS INT = 0 
-          , @unknownUser    AS UNIQUEIDENTIFIER = N'00000000-0000-0000-0000-000000000001' ; 
-          
---  1)  Add contactID field to incoming data
-    ALTER TABLE #mc_contact ADD contactID   UNIQUEIDENTIFIER NULL ; 
+    DECLARE @systemID           AS INT = 0 ; 
+
+
+--  1)  Determine systemID from incoming @systemDBName
+    SELECT  @systemID = id FROM dbo.Systems WHERE systemDBName = @systemDBName ;
+
     
---  2)  UPDATE contactID from existing Portal.Contacts.id     
+--  2)  Add contactID field to incoming data
+    ALTER TABLE #mc_contact 
+        ADD contactID UNIQUEIDENTIFIER NULL ; 
+    
+--  3)  UPDATE contactID from existing Portal.Contacts.id     
     UPDATE  #mc_contact
        SET  contactID = p.id 
       FROM  #mc_contact     AS m
 INNER JOIN  Portal.Contacts AS p ON p.portalID = m.id AND p.systemID = @systemID ; 
 
 
---  3)  DELETE Portal.Contacts
+--  4)  DELETE Portal.Contacts
       WITH  records AS ( 
             SELECT * FROM Portal.Contacts AS p 
              WHERE EXISTS ( SELECT 1 FROM #mc_contact AS m WHERE m.contactID = p.id AND p.systemID = @systemID ) )
     DELETE  records ; 
     
 
---  4)  DELETE Core.Contacts records when all Portal.Contacts records are deleted
+--  5)  DELETE Core.Contacts records when all Portal.Contacts records are deleted
       WITH  records AS ( 
             SELECT * FROM Core.Contacts AS c
              WHERE EXISTS ( SELECT 1 FROM #mc_contact AS m WHERE m.contactID = c.id ) 
