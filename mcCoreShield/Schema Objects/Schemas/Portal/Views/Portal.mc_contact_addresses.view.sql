@@ -1,4 +1,5 @@
 ﻿CREATE VIEW Portal.mc_contact_addresses
+WITH SCHEMABINDING
 AS
 /*
 ************************************************************************************************************************************
@@ -28,8 +29,8 @@ AS
           , name                = a.addressName
           , createdDate         = a.createdOn
           , portalDB            = s.systemDBName
-          , contactID           = a.contactsID
-          , contactAddressID    = a.id
+          , contactsID          = a.contactsID
+          , coreID              = a.id
 
       FROM  Core.ContactAddresses   AS a
 INNER JOIN  Portal.ContactAddresses AS p ON p.id = a.id

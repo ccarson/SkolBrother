@@ -1,4 +1,5 @@
 ﻿CREATE VIEW Portal.mc_contact_verification
+WITH SCHEMABINDING
 AS
 /*
 ************************************************************************************************************************************
@@ -19,8 +20,8 @@ AS
           , verified_by             = v.portalID
           , verified_date           = cv.verifiedOn
           , portalDB                = s.systemDBName
-          , contactID               = cv.contactsID
-          , contactVerificationsID  = cv.id
+          , contactsID              = cv.contactsID
+          , coreID                  = cv.id
 
       FROM  Core.ContactVerifications   AS cv
 INNER JOIN  Portal.ContactVerifications AS p ON p.id = cv.id

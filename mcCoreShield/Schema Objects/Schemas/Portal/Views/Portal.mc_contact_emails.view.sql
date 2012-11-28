@@ -1,4 +1,5 @@
 ﻿CREATE VIEW Portal.mc_contact_emails
+WITH SCHEMABINDING
 AS
 /*
 ************************************************************************************************************************************
@@ -24,8 +25,9 @@ AS
           , alert           = e.isAlert     
           , is_emergency    = e.isEmergency 
           , portalDB        = s.systemDBName
-          , contactID       = e.contactsID
-          , contactEmailsID = e.id
+          , contactsID      = e.contactsID
+          , coreID          = e.id
+          
       FROM  Core.ContactEmails   AS e
 INNER JOIN  Portal.ContactEmails AS p ON p.id = e.id
 INNER JOIN  Portal.Contacts      AS c ON c.id = e.contactsID AND c.systemID = p.systemID

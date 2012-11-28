@@ -46,13 +46,13 @@ BEGIN
     SELECT  @recordsIN = @@ROWCOUNT ;
 
     IF  EXISTS ( SELECT 1 FROM inserted ) 
-        EXECUTE @rc = Portal.mc_contact_phonesMerge @systemDBName
-                                                  , @recordsIN
-                                                  , @errorMessage OUTPUT ;
-    ELSE
-        EXECUTE @rc = Portal.mc_contact_phonesDelete @systemDBName
+        EXECUTE @rc = Portal.merge_mc_contact_phones @systemDBName
                                                    , @recordsIN
                                                    , @errorMessage OUTPUT ;
+    ELSE
+        EXECUTE @rc = Portal.delete_mc_contact_phones @systemDBName
+                                                    , @recordsIN
+                                                    , @errorMessage OUTPUT ;
         
     IF ( @rc > 0 )
         RAISERROR ( @errorMessage, 16, @rc ) ;

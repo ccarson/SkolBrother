@@ -7817,19 +7817,7 @@
     <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.mc_contact.synonym.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.mc_contactDelete.synonym.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.mc_contactMerge.synonym.sql">
-      <SubType>Code</SubType>
-    </Build>
     <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.mc_contact_addresses.synonym.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.mc_contact_addressesDelete.synonym.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.mc_contact_addressesMerge.synonym.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.mc_contact_emails.synonym.sql">
@@ -7838,23 +7826,23 @@
     <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\dbo.buildTriggerTable.proc.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.mc_contact_emailsDelete.synonym.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.mc_contact_emailsMerge.synonym.sql">
-      <SubType>Code</SubType>
-    </Build>
     <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.mc_contact_phones.synonym.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.mc_contact_notes.synonym.sql" />
     <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.mc_contact_verification.synonym.sql" />
-    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.mc_contact_verificationDelete.synonym.sql" />
-    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.mc_contact_notesDelete.synonym.sql" />
-    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.mc_contact_phonesDelete.synonym.sql" />
-    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.mc_contact_verificationMerge.synonym.sql" />
-    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.mc_contact_phonesMerge.synonym.sql" />
-    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.mc_contact_notesMerge.synonym.sql" />
+    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.delete_mc_contact_notes.synonym.sql" />
+    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.delete_mc_contact_phones.synonym.sql" />
+    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.delete_mc_contact_verification.synonym.sql" />
+    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.merge_mc_contact_notes.synonym.sql" />
+    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.merge_mc_contact_phones.synonym.sql" />
+    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.merge_mc_contact_verification.synonym.sql" />
+    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.delete_mc_contact.synonym.sql" />
+    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.delete_mc_contact_addresses.synonym.sql" />
+    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.delete_mc_contact_emails.synonym.sql" />
+    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.merge_mc_contact.synonym.sql" />
+    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.merge_mc_contact_addresses.synonym.sql" />
+    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.merge_mc_contact_emails.synonym.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Debug.publish.xml" />

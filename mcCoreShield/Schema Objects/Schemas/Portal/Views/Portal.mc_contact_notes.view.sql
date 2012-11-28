@@ -1,4 +1,5 @@
 ﻿CREATE VIEW Portal.mc_contact_notes
+WITH SCHEMABINDING
 AS
 /*
 ************************************************************************************************************************************
@@ -21,8 +22,8 @@ AS
           , dateAdded       = n.createdOn
           , type_id         = n.typeID
           , portalDB        = s.systemDBName
-          , contactID       = n.contactsID
-          , contactNotesID  = n.id
+          , contactsID      = n.contactsID
+          , coreID          = n.id
 
       FROM  Core.ContactNotes   AS n
 INNER JOIN  Portal.ContactNotes AS p ON p.id = n.id

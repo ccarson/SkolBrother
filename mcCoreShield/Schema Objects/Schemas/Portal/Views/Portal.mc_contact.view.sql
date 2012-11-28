@@ -82,7 +82,8 @@ AS
           , dVerifiedDate   = p.verifiedOn
           , inetwork        = c.inetwork
           , portalDB        = s.systemDBName
-          , ContactID       = c.id
+          , coreID          = c.id
+          
       FROM  Core.Contacts   AS c
 INNER JOIN  Portal.Contacts AS p ON p.id = c.id
 INNER JOIN  dbo.Systems     AS s ON s.id = p.systemID
