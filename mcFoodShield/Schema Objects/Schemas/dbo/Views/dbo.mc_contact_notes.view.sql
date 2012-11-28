@@ -18,7 +18,7 @@ AS
           , user_id     = v.user_id
           , notes       = v.notes
           , admin_id    = v.admin_id
-          , dateAdded   = v.epublic
+          , dateAdded   = v.dateAdded
           , type_id     = v.type_id
       FROM  Portal.mc_contact_notes AS v
      WHERE  v.portalDB = DB_NAME() ;

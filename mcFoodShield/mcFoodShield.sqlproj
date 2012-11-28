@@ -7729,25 +7729,13 @@
     <Build Include="Schema Objects\Database Level Objects\Service Broker\Routes\AutoCreatedLocal.route.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Synonyms\dbo.ContactEmails.synonym.sql">
-      <SubType>Code</SubType>
-    </Build>
     <Build Include="Schema Objects\Schemas\dbo\Synonyms\dbo.vw_transitionContactEmails.synonym.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Synonyms\dbo.ContactPhones.synonym.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Synonyms\dbo.vw_transitionContactPhones.synonym.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Synonyms\dbo.ContactNotes.synonym.sql">
-      <SubType>Code</SubType>
-    </Build>
     <Build Include="Schema Objects\Schemas\dbo\Synonyms\dbo.vw_transitionContactNotes.synonym.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Synonyms\dbo.ContactVerifications.synonym.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Synonyms\dbo.vw_transitionContactVerifications.synonym.sql">
@@ -7856,6 +7844,11 @@
     <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.mc_contact_emailsMerge.synonym.sql">
       <SubType>Code</SubType>
     </Build>
+    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.mc_contact_phones.synonym.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.mc_contact_notes.synonym.sql" />
+    <Build Include="Schema Objects\Schemas\Portal\Synonyms\Portal.mc_contact_verification.synonym.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Debug.publish.xml" />

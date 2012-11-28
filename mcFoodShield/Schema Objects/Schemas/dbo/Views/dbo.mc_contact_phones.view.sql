@@ -15,7 +15,7 @@ AS
 */
 
     SELECT  id              = v.id
-          , phone           = v.email
+          , phone           = v.phone
           , user_id         = v.user_id
           , type_id         = v.type_id
           , edefault        = v.edefault
