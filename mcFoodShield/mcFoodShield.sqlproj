@@ -6431,13 +6431,13 @@
     <Build Include="Schema Objects\Schemas\dbo\Views\Triggers\dbo.mc_contact_emails.trigger.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Views\Triggers\dbo.mc_contact_phones.process_mc_contact_phones.trigger.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Views\Triggers\dbo.mc_contact_phones.trigger.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Views\Triggers\dbo.mc_contact_notes.process_mc_contact_notes.trigger.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Views\Triggers\dbo.mc_contact_notes.trigger.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Views\Triggers\dbo.mc_contact_verification.process_mc_contact_verification.trigger.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Views\Triggers\dbo.mc_contact_verification.trigger.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Views\Triggers\dbo.mc_contact_organizations.process_mc_contact_organizations.trigger.sql">
