@@ -10,7 +10,7 @@ ALTER TABLE Portal.ContactSMEProfiles
     ON DELETE NO ACTION ON UPDATE NO ACTION ;
 GO
 
-ALTER TABLE dbo.ContactSMEProfiles
+ALTER TABLE Portal.ContactSMEProfiles
     ADD CONSTRAINT FK_ContactSMEProfiles_Core
     FOREIGN KEY ( id )
     REFERENCES Core.ContactSMEProfiles ( id )

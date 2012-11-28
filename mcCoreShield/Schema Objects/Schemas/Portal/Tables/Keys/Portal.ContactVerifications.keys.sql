@@ -10,7 +10,7 @@ ALTER TABLE Portal.ContactVerifications
     ON DELETE NO ACTION ON UPDATE NO ACTION ;
 GO
 
-ALTER TABLE dbo.ContactVerifications
+ALTER TABLE Portal.ContactVerifications
     ADD CONSTRAINT FK_ContactVerifications_Core
     FOREIGN KEY ( id )
     REFERENCES Core.ContactVerifications ( id )

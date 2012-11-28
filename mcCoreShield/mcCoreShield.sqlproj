@@ -525,39 +525,6 @@
     <Build Include="Schema Objects\mcCoreShield.rolememberships.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Statistics\dbo.ContactPhones._dta_stat_2110435088_2_1.statistic.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Statistics\dbo.ContactOrganizations._dta_stat_26951668_2_1.statistic.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Statistics\dbo.ContactOrganizations._dta_stat_26951668_1_2_3_5.statistic.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Statistics\dbo.ContactEmails._dta_stat_90951896_3_1.statistic.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Statistics\dbo.ContactEmails._dta_stat_90951896_1_2_3.statistic.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Statistics\dbo.transitionIdentities._dta_stat_1884338273_1_3_4.statistic.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Statistics\dbo.transitionIdentities._dta_stat_1884338273_4_1.statistic.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Statistics\dbo.transitionIdentities._dta_stat_1884338273_2_3_1_4.statistic.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Statistics\dbo.transitionIdentities._dta_stat_1884338273_2_4_1.statistic.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Statistics\dbo.transitionIdentities._dta_stat_1884338273_2_4_3.statistic.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Statistics\dbo.transitionIdentities._dta_stat_1884338273_3_4.statistic.sql">
-      <SubType>Code</SubType>
-    </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Triggers\dbo.transitionIdentities.transitionIdentities_trigger.trigger.sql">
       <SubType>Code</SubType>
       <QuotedIdentifier>Off</QuotedIdentifier>
@@ -922,6 +889,15 @@
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\Portal\Tables\Indexes\Portal.ContactPhones.indexes.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\Portal\Views\Portal.mc_contact_phones.view.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\Portal\Views\Portal.mc_contact_verifications.view.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\Portal\Views\Portal.mc_contact_notes.view.sql">
       <SubType>Code</SubType>
     </Build>
   </ItemGroup>

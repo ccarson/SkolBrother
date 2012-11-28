@@ -21,8 +21,8 @@ AS
           , dateAdded       = n.createdOn
           , type_id         = n.typeID
           , portalDB        = s.systemDBName
-          , contactID       = a.contactsID
-          , contactNotesID  = a.id
+          , contactID       = n.contactsID
+          , contactNotesID  = n.id
 
       FROM  Core.ContactNotes   AS n
 INNER JOIN  Portal.ContactNotes AS p ON p.id = n.id
