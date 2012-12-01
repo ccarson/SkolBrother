@@ -7729,18 +7729,6 @@
     <Build Include="Schema Objects\Database Level Objects\Service Broker\Routes\AutoCreatedLocal.route.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Synonyms\dbo.vw_transitionContactEmails.synonym.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Synonyms\dbo.vw_transitionContactPhones.synonym.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Synonyms\dbo.vw_transitionContactNotes.synonym.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Synonyms\dbo.vw_transitionContactVerifications.synonym.sql">
-      <SubType>Code</SubType>
-    </Build>
     <Build Include="Schema Objects\Schemas\dbo\Synonyms\dbo.ContactOrgRoles.synonym.sql">
       <SubType>Code</SubType>
     </Build>

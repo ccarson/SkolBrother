@@ -536,25 +536,13 @@
     <Build Include="Schema Objects\Schemas\dbo\Views\dbo.vw_transitionOrgDepartments.view.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Views\dbo.vw_transitionContactVerifications.view.sql">
-      <SubType>Code</SubType>
-    </Build>
     <Build Include="Schema Objects\Schemas\dbo\Views\dbo.vw_transitionContactSMEProfiles.view.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Views\dbo.vw_transitionContactPhones.view.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Views\dbo.vw_transitionContactOrgRoles.view.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Views\dbo.vw_transitionContactOrganizations.view.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Views\dbo.vw_transitionContactNotes.view.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Views\dbo.vw_transitionContactEmails.view.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Views\dbo.vw_transitionRolesRoleCategories.view.sql">
