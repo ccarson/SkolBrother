@@ -1,13 +1,13 @@
-﻿CREATE PROCEDURE dbo.mc_contact_notesMerge ( @systemDBName AS NVARCHAR (50)
-                                               , @recordsIN    AS INT
-                                               , @errorMessage AS NVARCHAR (MAX) OUTPUT )
+﻿CREATE PROCEDURE dbo.merge_mc_contact_notes ( @systemDBName AS NVARCHAR (50)
+                                            , @recordsIN    AS INT
+                                            , @errorMessage AS NVARCHAR (MAX) OUTPUT )
 AS
 /*
 ************************************************************************************************************************************
 
-  Procedure:    dbo.mc_contact_emailsMerge
+  Procedure:    dbo.merge_mc_contact_notes
      Author:    Chris Carson
-    Purpose:    Apply INSERTs and UPDATEs from portal to Core.ContactEmails and Portal.ContactEmails
+    Purpose:    Apply INSERTs and UPDATEs from portal to Core.ContactNotes and Portal.ContactNotes
 
     revisor     date            description
     ---------   -----------     ----------------------------
@@ -19,10 +19,10 @@ AS
     1)  Assign new portalID to incoming records that are not already assigned
     2)  Add coreID fields for contactID, contactEmailsID, createdID, updatedID
     4)  Set incoming contactID to new values 
-    3)  Set incoming contactEmailsID to existing Core.ContactEmails records when data matches
+    3)  Set incoming contactEmailsID to existing Core.ContactNotes records when data matches
     4)  Set incoming createdID, updatedID to new values 
-    5)  MERGE incoming data onto Core.ContactEmails
-    6)  MERGE incoming data onto Portal.ContactEmails
+    5)  MERGE incoming data onto Core.ContactNotes
+    6)  MERGE incoming data onto Portal.ContactNotes
 
     Notes:
     
@@ -37,10 +37,10 @@ BEGIN
     SET NOCOUNT ON ;
 
     DECLARE @rows                        AS INT = 0
-          , @coreContactEmailsUpdates    AS INT = 0
-          , @portalContactEmailsInserts  AS INT = 0
-          , @portalContactEmailsUpdates  AS INT = 0
-          , @coreContactEmailsInserts    AS INT = 0
+          , @coreContactNotesUpdates    AS INT = 0
+          , @portalContactNotesInserts  AS INT = 0
+          , @portalContactNotesUpdates  AS INT = 0
+          , @coreContactNotesInserts    AS INT = 0
           , @legacyID                    AS INT = 0
           , @systemID                    AS INT = 0
           , @adminUser                   AS UNIQUEIDENTIFIER = N'00000000-0000-0000-0000-000000000000' ; 
@@ -55,74 +55,66 @@ BEGIN
      WHERE  systemDBName = @systemDBName ;
 
     SELECT  @legacyID = COALESCE( MAX( portalID ), 0 )
-      FROM  Portal.ContactEmails
+      FROM  Portal.ContactNotes
      WHERE  systemID = @systemID ;
 
-    UPDATE  #mc_contact_emails
+    UPDATE  #mc_contact_notes
        SET  @legacyID = id = @legacyID + 1
      WHERE  id IS NULL ;
 
 
 --  2)  Add coreID fields for contactAddressID, createdID, updatedID
-    ALTER TABLE #mc_contact_emails ADD
+    ALTER TABLE #mc_contact_notes ADD
         contactsID      UNIQUEIDENTIFIER NULL
-      , contactEmailsID UNIQUEIDENTIFIER NULL DEFAULT NEWSEQUENTIALID()  WITH VALUES
+      , contactNotesID  UNIQUEIDENTIFIER NULL DEFAULT NEWSEQUENTIALID() WITH VALUES
+      , adminID         UNIQUEIDENTIFIER NULL
       , createdID       UNIQUEIDENTIFIER NULL 
       , updatedID       UNIQUEIDENTIFIER NULL ;
 
---  4)  Set incoming contactID to new values 
-    UPDATE  #mc_contact_emails
+--  3)  Set incoming coreIDs to new values 
+    UPDATE  #mc_contact_notes
        SET  contactID = p.id
-      FROM  #mc_contact_emails AS m
-INNER JOIN  Portal.Contacts    AS p 
-        ON  p.portalID = m.user_id 
-            AND p.systemID = @systemID ;
+          , adminID   = COALESCE( a.id, @adminUser )
+      FROM  #mc_contact_notes AS m
+INNER JOIN  Portal.Contacts   AS p ON p.portalID = m.user_id  AND p.systemID = @systemID
+ LEFT JOIN  Portal.Contacts   AS a ON a.portalID = m.admin_id AND a.systemID = @systemID ; 
     
---  3)  Set incoming contactEmailsID to existing Core.ContactEmails records when data matches
-    UPDATE  #mc_contact_emails
-       SET  contactEmailsID = e.id
-      FROM  #mc_contact_emails AS m 
-INNER JOIN  Core.ContactEmails AS e ON e.email = m.email ; 
+--  3)  Set incoming contactEmailsID to existing Core.ContactNotes records when data matches
+    UPDATE  #mc_contact_notes
+       SET  contactNotesID = n.id 
+      FROM  #mc_contact_notes   AS m 
+INNER JOIN  Core.ContactNotes   AS n ON n.typeID = m.type_id AND n.contactsID = m.contactsID ; 
 
 
 --  4)  Set incoming createdID, updatedID to new values
-    UPDATE  #mc_contact_emails
-       SET  createdID  = @adminUser
-          , updatedID  = @adminUser ;
-
+    UPDATE  #mc_contact_notes
+       SET  createdID  = adminID
+          , updatedID  = adminID ;
           
 
---  5)  MERGE incoming data onto Core.ContactEmails
-     MERGE  Core.ContactEmails AS tgt
-     USING  #mc_contact_emails AS src
-        ON  src.contactEmailsID = tgt.id
+--  5)  MERGE incoming data onto Core.ContactNotes
+     MERGE  Core.ContactNotes AS tgt
+     USING  #mc_contact_notes AS src
+        ON  src.contactNotesID = tgt.id
       WHEN  MATCHED
       THEN  UPDATE
-               SET  contactsID  = src.contactsID     
-                  , email       = src.email
-                  , typeID      = src.type_id
-                  , isDefault   = src.edefault        
-                  , isActive    = src.active          
-                  , isPublic    = src.epublic         
-                  , isAlert     = src.alert           
-                  , isEmergency = src.is_emergency    
-                  , updatedOn   = SYSDATETIME()     
-                  , updatedBy   = src.updatedID      
+               SET  contactsID       = src.contactsID     
+                  , typeID           = src.type_ID
+                  , adminID          = src.adminID
+                  , notes            = src.notes
+                  , updatedOn        = SYSDATETIME()
+                  , updatedBy        = src.updatedID
 
       WHEN  NOT MATCHED BY TARGET
-      THEN  INSERT ( id, contactsID, email, typeID
-                        , isDefault, isActive, isPublic
-                        , isAlert, isEmergency 
-                        , createdOn, createdBy )
-            VALUES  ( src.contactEmailsID, src.contactsID, src.email, src.type_id
-                        , src.edefault, src.active, src.epublic
-                        , src.alert, src.is_emergency    
-                        , SYSDATETIME(), src.createdID ) 
+      THEN  INSERT  ( id, contactsID, typeID, adminID
+                        , notes, createdOn, createdBy ) 
+            VALUES  ( src.contactNotesID, src.contactsID, src.type_id, src.adminID
+                        , src.notes, src.DateAdded, src.createdID ) 
     OUTPUT  $action, inserted.id INTO @coreMergeResults ;
     SELECT  @rows = @@ROWCOUNT ;
 
-    SELECT  @coreContactEmailsInserts = ( SELECT COUNT(*) FROM @coreMergeResults WHERE action = 'INSERT' )
-          , @coreContactEmailsUpdates = ( SELECT COUNT(*) FROM @coreMergeResults WHERE action = 'UPDATE' ) ;
+    SELECT  @coreContactNotesInserts = ( SELECT COUNT(*) FROM @coreMergeResults WHERE action = 'INSERT' )
+          , @coreContactNotesUpdates = ( SELECT COUNT(*) FROM @coreMergeResults WHERE action = 'UPDATE' ) ;
 
 --        IF  ( @rows <> @recordsIN ) OR ( ( @organizationInserts + @organizationUpdates ) <> @recordsIN )
 --        BEGIN
@@ -135,10 +127,10 @@ INNER JOIN  Core.ContactEmails AS e ON e.email = m.email ;
 --        END
 
 
---  6)  MERGE incoming data onto Portal.ContactEmails
-     MERGE  Portal.ContactEmails AS tgt
-     USING  #mc_contact_emails   AS src
-        ON  src.contactEmailsID = tgt.id
+--  6)  MERGE incoming data onto Portal.ContactNotes
+     MERGE  Portal.ContactNotes AS tgt
+     USING  #mc_contact_notes   AS src
+        ON  src.contactNotesID = tgt.id
       WHEN  MATCHED
       THEN  UPDATE
                SET  systemID    = @systemID
@@ -148,12 +140,12 @@ INNER JOIN  Core.ContactEmails AS e ON e.email = m.email ;
 
       WHEN  NOT MATCHED BY TARGET
       THEN  INSERT ( id, systemID, createdOn, createdBy, portalID )
-            VALUES ( src.contactEmailsID, @systemID, SYSDATETIME(), src.createID, src.id )
+            VALUES ( src.contactNotesID, @systemID, SYSDATETIME(), src.createdID, src.id )
     OUTPUT  $action, inserted.id INTO @portalMergeResults ;
     SELECT  @rows = @@ROWCOUNT ;
 
-    SELECT  @portalContactEmailsInserts = ( SELECT COUNT(*) FROM @portalMergeResults WHERE action = 'INSERT' )
-          , @portalContactEmailsUpdates = ( SELECT COUNT(*) FROM @portalMergeResults WHERE action = 'UPDATE' ) ;
+    SELECT  @portalContactNotesInserts = ( SELECT COUNT(*) FROM @portalMergeResults WHERE action = 'INSERT' )
+          , @portalContactNotesUpdates = ( SELECT COUNT(*) FROM @portalMergeResults WHERE action = 'UPDATE' ) ;
 
 
 END

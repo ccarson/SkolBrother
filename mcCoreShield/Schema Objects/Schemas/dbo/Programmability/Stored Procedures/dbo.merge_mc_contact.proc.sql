@@ -1,11 +1,11 @@
-﻿CREATE PROCEDURE dbo.mc_contactMerge ( @systemDBName AS NVARCHAR (50)
-                                     , @recordsIN    AS INT
-                                     , @errorMessage AS NVARCHAR (MAX) OUTPUT )
+﻿CREATE PROCEDURE dbo.merge_mc_contact ( @systemDBName AS NVARCHAR (50)
+                                      , @recordsIN    AS INT
+                                      , @errorMessage AS NVARCHAR (MAX) OUTPUT )
 AS
 /*
 ************************************************************************************************************************************
 
-  Procedure:    dbo.mc_contactMerge
+  Procedure:    dbo.merge_mc_contact
      Author:    Chris Carson
     Purpose:    Apply INSERTs and UPDATEs from portal to Core.Contacts and Portal.Contacts
 
